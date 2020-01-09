@@ -21,13 +21,20 @@ class MoviesViewController: UIViewController {
     }
 }
 
-extension MoviesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (collectionView.frame.width - 10) / 2, height: collectionView.frame.width / 1.5)
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 40
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell
+        cell?.backgroundColor = UIColor.customDarkBlue
+        return cell ?? UICollectionViewCell()
     }
     
 }
