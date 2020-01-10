@@ -34,6 +34,18 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
         return CGSize(width: (collectionView.frame.width - 10) / 2, height: collectionView.frame.width / 1.5)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        controller?.selectedIndex = indexPath.row
+        
+        let storyBoard = UIStoryboard.init(name: "Movies", bundle: nil)
+        
+        guard let vc: DetailsViewController = storyBoard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController else {return}
+        
+        vc.controller = self.controller
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return controller?.numberOfItensInSection() ?? 0
     }
@@ -41,7 +53,7 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell
-        cell?.setupCell(movie: controller?.loadCurrentCell(indexPath: indexPath))
+        cell?.setupCell(movie: controller?.loadCurrentCell(indexPath: indexPath.row))
         return cell ?? UICollectionViewCell()
     }
     

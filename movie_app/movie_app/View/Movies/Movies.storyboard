@@ -11,7 +11,7 @@
         <!--Movies View Controller-->
         <scene sceneID="0ro-wc-dDX">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="Ody-x6-QGr" customClass="MoviesViewController" customModule="Movs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoviesViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ody-x6-QGr" customClass="MoviesViewController" customModule="Movs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="P3o-hi-NMt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,10 +40,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AJi-w7-41c">
+                                                    <rect key="frame" x="8" y="8" width="160" height="217"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="176" height="276"/>
                                         <connections>
+                                            <outlet property="image" destination="AJi-w7-41c" id="wdN-Yd-2gs"/>
                                             <outlet property="titleLbl" destination="sue-cG-XbK" id="hs1-Dq-cIn"/>
                                         </connections>
                                     </collectionViewCell>
@@ -62,11 +67,40 @@
                     <navigationItem key="navigationItem" id="klm-4a-WuP"/>
                     <connections>
                         <outlet property="moviesCollectionView" destination="YGW-ns-l1B" id="qyu-8c-gE6"/>
+                        <segue destination="Yua-cS-ZP8" kind="show" identifier="DetailsViewController" id="37g-YM-iz1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gii-GS-LJD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1484.057971014493" y="-269.19642857142856"/>
+        </scene>
+        <!--Details View Controller-->
+        <scene sceneID="Nmb-1U-It5">
+            <objects>
+                <viewController storyboardIdentifier="DetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yua-cS-ZP8" customClass="DetailsViewController" customModule="Movs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BHE-7F-N7u">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apq-RK-Du8">
+                                <rect key="frame" x="20" y="296" width="357" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="1g1-6N-DMx"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RdX-Re-Bws"/>
+                    <connections>
+                        <outlet property="titleLbl" destination="apq-RK-Du8" id="iLI-SJ-chA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hfs-Zo-OS0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2369.5652173913045" y="-269.19642857142856"/>
         </scene>
         <!--Movies-->
         <scene sceneID="zke-cl-dNo">

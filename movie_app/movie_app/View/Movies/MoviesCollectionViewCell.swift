@@ -11,9 +11,12 @@ import UIKit
 class MoviesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var image: UIImageView!
+    
     
     func setupCell(movie: Result?) {
         self.backgroundColor = .customDarkBlue
         self.titleLbl.text = movie?.originalTitle
+        
     }
 }

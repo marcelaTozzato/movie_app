@@ -19,6 +19,7 @@ class MoviesController {
     weak var delegate: MoviesControllerDelegate?
     
     var arrayMovies: [Result] = []
+    var selectedIndex: Int = 0 
     
     func setupController() {
         provider = MoviesDataProvider()
@@ -34,8 +35,8 @@ class MoviesController {
         return self.arrayMovies.count
     }
     
-    func loadCurrentCell(indexPath: IndexPath) -> Result {
-        return arrayMovies[indexPath.row]
+    func loadCurrentCell(indexPath: Int) -> Result {
+        return arrayMovies[indexPath]
     }
 }
 
