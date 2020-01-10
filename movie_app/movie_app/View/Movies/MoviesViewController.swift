@@ -12,12 +12,19 @@ class MoviesViewController: UIViewController {
 
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     
+    var controller: MoviesController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.moviesCollectionView.delegate = self
         self.moviesCollectionView.dataSource = self
-
+        
+        self.controller = MoviesController()
+        self.controller?.delegate = self
+        
+        self.controller?.loadMovies()
+        
     }
 }
 
@@ -37,4 +44,16 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
         return cell ?? UICollectionViewCell()
     }
     
+}
+
+extension MoviesViewController: MoviesControllerDelegate {
+    func sucessLoadMovies() {
+        print("Sucesso")
+        print(controller?.arrayMovies[0].originalTitle ?? "")
+    }
+    
+    func failLoadMovies(error: NetworkingError?) {
+        print("Falha")
+        print(error?.localizedDescription ?? "")
+    }
 }
