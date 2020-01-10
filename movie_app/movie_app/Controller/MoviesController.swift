@@ -29,6 +29,14 @@ class MoviesController {
         self.setupController()
         self.provider?.loadMovies()
     }
+    
+    func numberOfItensInSection() -> Int {
+        return self.arrayMovies.count
+    }
+    
+    func loadCurrentCell(indexPath: IndexPath) -> Result {
+        return arrayMovies[indexPath.row]
+    }
 }
 
 extension MoviesController: MoviesDataProviderDelegate {

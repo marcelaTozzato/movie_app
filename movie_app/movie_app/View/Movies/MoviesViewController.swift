@@ -33,14 +33,15 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (collectionView.frame.width - 10) / 2, height: collectionView.frame.width / 1.5)
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 40
+        return controller?.numberOfItensInSection() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell
-        cell?.backgroundColor = UIColor.customDarkBlue
+        cell?.setupCell(movie: controller?.loadCurrentCell(indexPath: indexPath))
         return cell ?? UICollectionViewCell()
     }
     
@@ -48,8 +49,8 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
 
 extension MoviesViewController: MoviesControllerDelegate {
     func sucessLoadMovies() {
+        self.moviesCollectionView.reloadData()
         print("Sucesso")
-        print(controller?.arrayMovies[0].originalTitle ?? "")
     }
     
     func failLoadMovies(error: NetworkingError?) {
