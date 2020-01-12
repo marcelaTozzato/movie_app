@@ -18,12 +18,21 @@ class MoviesDataProvider {
     
     weak var delegate: MoviesDataProviderDelegate?
     
+    private let baseURL = "https://api.themoviedb.org"
+    private let APIVersion = "3"
+    private let APICategory = "movie"
+    private let APIResource = "popular"
     private let APIKey = "40cf48ef896219470665035ae96b624a"
-    private let baseURL = "https://api.themoviedb.org/3/movie/popular?api_key=40cf48ef896219470665035ae96b624a&language=en-US&page=1"
+    private let APILanguage = "en-US"
+    private let APIPage = "1"
 
+    func getMoviesRequestURL() -> String {
+        
+        return "\(baseURL)/\(APIVersion)/\(APICategory)/\(APIResource)?api_key=\(APIKey)&language=\(APILanguage)&page=\(APIPage)"
+    }
     
     func loadMovies() {
-        if let URL: URL = URL(string: baseURL){
+        if let URL: URL = URL(string: getMoviesRequestURL()){
             
             Alamofire.request(URL, method: .get).responseJSON { (response) in
               

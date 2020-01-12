@@ -38,6 +38,7 @@ class MoviesController {
     func loadCurrentCell(indexPath: Int) -> Result {
         return arrayMovies[indexPath]
     }
+
 }
 
 extension MoviesController: MoviesDataProviderDelegate {
