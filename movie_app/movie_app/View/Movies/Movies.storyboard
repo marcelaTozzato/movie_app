@@ -35,30 +35,22 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sue-cG-XbK">
                                                     <rect key="frame" x="5" y="250" width="166" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="Ini-CT-a4v"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AJi-w7-41c">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AJi-w7-41c">
                                                     <rect key="frame" x="0.0" y="0.0" width="176" height="245"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="225" id="gFG-9d-HmR"/>
-                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="AJi-w7-41c" firstAttribute="leading" secondItem="jlN-6a-wow" secondAttribute="leading" id="736-18-Y45"/>
-                                                <constraint firstItem="AJi-w7-41c" firstAttribute="centerX" secondItem="sue-cG-XbK" secondAttribute="centerX" id="OIv-FC-lwu"/>
-                                                <constraint firstItem="sue-cG-XbK" firstAttribute="leading" secondItem="jlN-6a-wow" secondAttribute="leading" constant="5" id="Pnl-u9-gwm"/>
-                                                <constraint firstAttribute="bottom" secondItem="sue-cG-XbK" secondAttribute="bottom" constant="5" id="WWY-lD-hr3"/>
-                                                <constraint firstItem="sue-cG-XbK" firstAttribute="top" secondItem="AJi-w7-41c" secondAttribute="bottom" constant="5" id="iQ6-Ts-5VZ"/>
-                                                <constraint firstItem="sue-cG-XbK" firstAttribute="centerX" secondItem="jlN-6a-wow" secondAttribute="centerX" id="jKz-R1-JRd"/>
-                                                <constraint firstItem="AJi-w7-41c" firstAttribute="centerX" secondItem="jlN-6a-wow" secondAttribute="centerX" id="oAx-PR-CXf"/>
-                                                <constraint firstItem="AJi-w7-41c" firstAttribute="top" secondItem="jlN-6a-wow" secondAttribute="top" id="pPW-6J-8d1"/>
-                                                <constraint firstAttribute="trailing" secondItem="sue-cG-XbK" secondAttribute="trailing" constant="5" id="tBP-mS-iqv"/>
+                                                <constraint firstAttribute="bottom" secondItem="sue-cG-XbK" secondAttribute="bottom" constant="5" id="2ib-HP-0Vg"/>
+                                                <constraint firstItem="sue-cG-XbK" firstAttribute="top" secondItem="AJi-w7-41c" secondAttribute="bottom" constant="5" id="LwK-Za-0lv"/>
+                                                <constraint firstAttribute="trailing" secondItem="AJi-w7-41c" secondAttribute="trailing" id="SLG-aF-anm"/>
+                                                <constraint firstAttribute="trailing" secondItem="sue-cG-XbK" secondAttribute="trailing" constant="5" id="Uat-gp-hIQ"/>
+                                                <constraint firstItem="sue-cG-XbK" firstAttribute="leading" secondItem="jlN-6a-wow" secondAttribute="leading" constant="5" id="dUE-wa-Hq1"/>
+                                                <constraint firstItem="AJi-w7-41c" firstAttribute="leading" secondItem="jlN-6a-wow" secondAttribute="leading" id="o4M-s7-H0h"/>
+                                                <constraint firstItem="AJi-w7-41c" firstAttribute="top" secondItem="jlN-6a-wow" secondAttribute="top" id="uZe-Ha-tN1"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="176" height="276"/>

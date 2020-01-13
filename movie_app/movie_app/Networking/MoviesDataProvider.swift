@@ -31,27 +31,68 @@ class MoviesDataProvider {
         return "\(baseURL)/\(APIVersion)/\(APICategory)/\(APIResource)?api_key=\(APIKey)&language=\(APILanguage)&page=\(APIPage)"
     }
     
-    func loadMovies() {
+    
+    func makeAPIRequest(method: HTTPMethod, requestState: RequestState, completion: @escaping (_ response: DataResponse<Any>) -> Void) {
+        
         if let URL: URL = URL(string: getMoviesRequestURL()){
             
-            Alamofire.request(URL, method: .get).responseJSON { (response) in
-              
-                if response.response?.statusCode == 200 {
+                requestState.session.request(URL, method: .get).responseJSON { (response) in
+                               completion(response)
+                           }
+         
+//            Alamofire.request(URL, method: method).responseJSON { (response) in
+//                completion(response)
+//
+//           }
+        }
+    }
+    
+    func handleMovieList(movies: Movies) {
+         self.delegate?.sucessLoadMovie(movie: movies)
+        
+    }
+
+    
+    func loadMovies(requestState: RequestState) {
+        
+        makeAPIRequest(method: .get, requestState: requestState) { (response) in
+            if response.response?.statusCode == 200 {
+                
+                do {
+                    let decodedObject: Movies = try JSONDecoder().decode(Movies.self, from: response.data ?? Data())
+                    self.handleMovieList(movies: decodedObject)
                     
-                    do {
-                        let decodeObject: Movies = try JSONDecoder().decode(Movies.self, from: response.data ?? Data())
-                        self.delegate?.sucessLoadMovie(movie: decodeObject)
-                        
-                    } catch {
-                        self.delegate?.failLoadMovie(error: .invalidResponse)
-                    }
-                    
-                } else {
-                    self.delegate?.failLoadMovie(error: .invalidRequest)
+                } catch {
+                    self.delegate?.failLoadMovie(error: .invalidResponse)
                 }
+                
+            } else {
+                self.delegate?.failLoadMovie(error: .invalidRequest)
             }
         }
     }
+    
+//    func loadMovies() {
+//        if let URL: URL = URL(string: getMoviesRequestURL()){
+//
+//            Alamofire.request(URL, method: .get).responseJSON { (response) in
+//
+//                if response.response?.statusCode == 200 {
+//
+//                    do {
+//                        let decodeObject: Movies = try JSONDecoder().decode(Movies.self, from: response.data ?? Data())
+//                        self.delegate?.sucessLoadMovie(movie: decodeObject)
+//
+//                    } catch {
+//                        self.delegate?.failLoadMovie(error: .invalidResponse)
+//                    }
+//
+//                } else {
+//                    self.delegate?.failLoadMovie(error: .invalidRequest)
+//                }
+//            }
+//        }
+//    }
 }
 
 enum NetworkingError: String, Error {

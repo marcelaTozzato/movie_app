@@ -19,18 +19,22 @@ class MoviesController {
     weak var delegate: MoviesControllerDelegate?
     
     var arrayMovies: [Result] = []
-    var selectedIndex: Int = 0 
+    var selectedIndex: Int = 0
     
-    func setupController() {
+    func setupController(moviesDataProviderDelegate: MoviesDataProviderDelegate) {
         provider = MoviesDataProvider()
-        self.provider?.delegate = self
+        self.provider?.delegate = moviesDataProviderDelegate
     }
     
-    func loadMovies() {
-        self.setupController()
-        self.provider?.loadMovies()
+    func loadMovies(requestState: RequestState) {
+        self.loadMovies(requestState: requestState, moviesDataProviderDelegate: self)
     }
     
+    func loadMovies(requestState: RequestState, moviesDataProviderDelegate: MoviesDataProviderDelegate) {
+        self.setupController(moviesDataProviderDelegate: moviesDataProviderDelegate)
+        self.provider?.loadMovies(requestState: requestState)
+    }
+
     func numberOfItensInSection() -> Int {
         return self.arrayMovies.count
     }

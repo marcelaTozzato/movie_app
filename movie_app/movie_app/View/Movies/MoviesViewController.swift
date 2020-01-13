@@ -23,7 +23,7 @@ class MoviesViewController: UIViewController {
         self.controller = MoviesController()
         self.controller?.delegate = self
         
-        self.controller?.loadMovies()
+        self.controller?.loadMovies(requestState: .live)
         
     }
 }
