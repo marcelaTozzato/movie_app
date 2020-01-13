@@ -1,5 +1,5 @@
 //
-//  Extensions.swift
+//  UIColor + Extensions.swift
 //  movie_app
 //
 //  Created by Marcela Limieri Tozzato on 07/01/20.

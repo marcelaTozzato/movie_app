@@ -52,9 +52,9 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell
-        cell?.setupCell(movie: controller?.loadCurrentCell(indexPath: indexPath.row))
-        return cell ?? UICollectionViewCell()
+        let cell: MoviesCollectionViewCell = MoviesCollectionViewCell.createCell(collectionView: collectionView, indexPath: indexPath)
+        cell.setupCell(movie: controller?.loadCurrentCell(indexPath: indexPath.row))
+        return cell
     }
     
 }

@@ -25,6 +25,12 @@ class RequestManager {
         self.liveManager = SessionManager.default
         self.mockManager = SessionManager(configuration: configuration)
     }
+    
+    func getRequestManager(requestState:RequestState){
+        if requestState == .live{
+            
+        }
+    }
 }
 
 enum RequestState {

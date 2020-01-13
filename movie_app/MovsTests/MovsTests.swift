@@ -14,12 +14,20 @@ class MovsTests: XCTestCase, MoviesDataProviderDelegate {
     var controller: MoviesController?
     var provider: MoviesDataProvider?
     var expect: XCTestExpectation?
+    var runTests = {
+        (movies: Movies) -> () in
+    }
+        
     
     override func setUp() {
         super.setUp()
         controller = MoviesController()
         provider = MoviesDataProvider()
-        
+        expect = expectation(description: "GetSuccess3Movies")
+        runTests = {
+            (movies: Movies) -> () in
+            XCTAssertEqual(movies.results.count, 3)
+        }
     }
 
     override func tearDown() {
@@ -27,16 +35,15 @@ class MovsTests: XCTestCase, MoviesDataProviderDelegate {
     }
     
     func testShouldGetMoviesWhenAllIsWorking() {
+        let client = RequestState.mock
         
-        self.provider?.delegate = self
-        
-        expect = expectation(description: "Get")
-        controller?.loadMovies(requestState: .mock, moviesDataProviderDelegate: self)
+        controller?.loadMovies(requestState: client, moviesDataProviderDelegate: self)
         waitForExpectations(timeout: 5.0, handler:  nil)
     }
     
     func sucessLoadMovie(movie: Movies) {
         expect?.fulfill()
+        runTests(movie)
     }
     
     func failLoadMovie(error: NetworkingError?) {
