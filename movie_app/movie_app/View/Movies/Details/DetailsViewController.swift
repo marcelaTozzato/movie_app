@@ -39,7 +39,6 @@ class DetailsViewController: UIViewController {
     
     @IBOutlet weak var detailTableView: UITableView!
     
-    var controller: MoviesController?
     var currentMovie: Result?
     var section: [String] = []
     var currentSession: SectionType?
@@ -49,13 +48,6 @@ class DetailsViewController: UIViewController {
         
         self.detailTableView.delegate = self
         self.detailTableView.dataSource = self
-        
-        if controller == nil {
-            controller = MoviesController()
-        }
-        
-        guard let controller = controller else {return}
-        currentMovie = controller.loadCurrentCell(indexPath: controller.selectedIndex)
         
         section = ["Image", "Title", "Release", "Synopsis"]
     }

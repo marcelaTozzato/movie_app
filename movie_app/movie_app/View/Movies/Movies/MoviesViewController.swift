@@ -13,6 +13,7 @@ class MoviesViewController: UIViewController {
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     
     var controller: MoviesController?
+    var fetchingMore: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
         
         guard let vc: DetailsViewController = storyBoard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController else {return}
         
-        vc.controller = self.controller
+        vc.currentMovie = controller?.arrayMovies[indexPath.row]
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -57,16 +58,34 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
         return cell
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.height {
+            if !fetchingMore {
+                beginBatchFech()
+            }
+        }
+    }
+    
+    func beginBatchFech() {
+        fetchingMore = true
+        print("BeginFetchingMore")
+        
+        self.controller?.loadMovies(requestState: .live)
+        self.moviesCollectionView.reloadData()
+    }
+    
+    
 }
 
 extension MoviesViewController: MoviesControllerDelegate {
     func sucessLoadMovies() {
         self.moviesCollectionView.reloadData()
-        print("Sucesso")
     }
     
     func failLoadMovies(error: NetworkingError?) {
-        print("Falha")
         print(error?.localizedDescription ?? "")
     }
 }

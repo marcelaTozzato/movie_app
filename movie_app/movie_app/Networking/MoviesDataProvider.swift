@@ -39,11 +39,6 @@ class MoviesDataProvider {
                 requestState.session.request(URL, method: .get).responseJSON { (response) in
                                completion(response)
                            }
-         
-//            Alamofire.request(URL, method: method).responseJSON { (response) in
-//                completion(response)
-//
-//           }
         }
     }
     
@@ -71,28 +66,7 @@ class MoviesDataProvider {
             }
         }
     }
-    
-//    func loadMovies() {
-//        if let URL: URL = URL(string: getMoviesRequestURL()){
-//
-//            Alamofire.request(URL, method: .get).responseJSON { (response) in
-//
-//                if response.response?.statusCode == 200 {
-//
-//                    do {
-//                        let decodeObject: Movies = try JSONDecoder().decode(Movies.self, from: response.data ?? Data())
-//                        self.delegate?.sucessLoadMovie(movie: decodeObject)
-//
-//                    } catch {
-//                        self.delegate?.failLoadMovie(error: .invalidResponse)
-//                    }
-//
-//                } else {
-//                    self.delegate?.failLoadMovie(error: .invalidRequest)
-//                }
-//            }
-//        }
-//    }
+
 }
 
 enum NetworkingError: String, Error {

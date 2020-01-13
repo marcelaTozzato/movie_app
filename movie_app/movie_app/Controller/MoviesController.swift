@@ -47,8 +47,10 @@ class MoviesController {
 
 extension MoviesController: MoviesDataProviderDelegate {
     func sucessLoadMovie(movie: Movies) {
-        self.arrayMovies = movie.results
-        self.delegate?.sucessLoadMovies()
+        for value in movie.results {
+            self.arrayMovies.append(value)
+            self.delegate?.sucessLoadMovies()
+        }
     }
     
     func failLoadMovie(error: NetworkingError?) {
