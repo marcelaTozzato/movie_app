@@ -51,15 +51,8 @@ class MockingURLProtocol: URLProtocol {
     
     // MARK: Loading Methods
     override func startLoading() {
-        if let data = Mocks.find(request),
-            let url = request.url,
-            let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: cannedHeaders) {
-            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: URLCache.StoragePolicy.notAllowed)
-            client?.urlProtocol(self, didLoad: data)
-        }
-        client?.urlProtocolDidFinishLoading(self)
     }
-    
+
     override func stopLoading() {
     }
 }

@@ -12,7 +12,6 @@ import XCTest
 class MoviesViewControllerTests: XCTestCase, MoviesDataProviderDelegate {
 
     var sut: MoviesViewController?
-//    var sut: MoviesController?
 //    var provider: MoviesDataProvider?
 //    var expect: XCTestExpectation?
 //    var runTests = {
@@ -37,13 +36,16 @@ class MoviesViewControllerTests: XCTestCase, MoviesDataProviderDelegate {
     override func tearDown() {
         super.tearDown()
     }
-//
+    
+    func testShouldIncrementCurrentPageWhenCurrentPageIsLessThanTotalPage(){
+        
+    }
 //    func testShouldGetMoviesWhenAllIsWorking() {
 //
 //        sut?.loadMovies(sessionManager: RequestManager(mockingProtocol: MockingForSuccess3Movies.self).currentSessionManager(state: .mock), moviesDataProviderDelegate: self, page: 1)
 //        waitForExpectations(timeout: 5.0, handler:  nil)
 //    }
-//
+
     func sucessLoadMovie(movie: Movies) {
 //        expect?.fulfill()
 //        sut?.sucessLoadMovie(movie: movie)

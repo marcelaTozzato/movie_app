@@ -28,9 +28,9 @@
 		1F1949EE23CD38C5001A9038 /* MoviesControllerMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1949ED23CD38C5001A9038 /* MoviesControllerMocks.swift */; };
 		1F194A1223CD53B2001A9038 /* MoviesControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F194A1123CD53B2001A9038 /* MoviesControllerTests.swift */; };
 		1F194A1423CD5446001A9038 /* MoviesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F194A1323CD5446001A9038 /* MoviesViewControllerTests.swift */; };
+		1F194A1623CD6876001A9038 /* MoviesViewControllerMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F194A1523CD6875001A9038 /* MoviesViewControllerMocks.swift */; };
 		1F7FF5BA23CC0E1100D87240 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FF5B923CC0E1100D87240 /* RequestManager.swift */; };
 		1F7FF5BD23CC0E4F00D87240 /* MockingURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FF5BC23CC0E4F00D87240 /* MockingURLProtocol.swift */; };
-		1F7FF5BF23CC0E7300D87240 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FF5BE23CC0E7300D87240 /* Mocks.swift */; };
 		1F7FF5C223CCD4CA00D87240 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FF5C123CCD4CA00D87240 /* ImageTableViewCell.swift */; };
 		1F7FF5C423CCD65400D87240 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FF5C323CCD65400D87240 /* DescriptionTableViewCell.swift */; };
 		1F7FF5C623CCDDFE00D87240 /* UITableViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FF5C523CCDDFE00D87240 /* UITableViewCell + Extensions.swift */; };
@@ -86,10 +86,9 @@
 		1F194A0B23CD5391001A9038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F194A1123CD53B2001A9038 /* MoviesControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesControllerTests.swift; sourceTree = "<group>"; };
 		1F194A1323CD5446001A9038 /* MoviesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewControllerTests.swift; sourceTree = "<group>"; };
-		1F7FF5B723CC0BDE00D87240 /* movies-mock-sucess.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "movies-mock-sucess.json"; sourceTree = "<group>"; };
+		1F194A1523CD6875001A9038 /* MoviesViewControllerMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewControllerMocks.swift; sourceTree = "<group>"; };
 		1F7FF5B923CC0E1100D87240 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		1F7FF5BC23CC0E4F00D87240 /* MockingURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockingURLProtocol.swift; sourceTree = "<group>"; };
-		1F7FF5BE23CC0E7300D87240 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		1F7FF5C123CCD4CA00D87240 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 		1F7FF5C323CCD65400D87240 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		1F7FF5C523CCDDFE00D87240 /* UITableViewCell + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell + Extensions.swift"; sourceTree = "<group>"; };
@@ -272,19 +271,10 @@
 			isa = PBXGroup;
 			children = (
 				1F7FF5BC23CC0E4F00D87240 /* MockingURLProtocol.swift */,
-				1F7FF5BE23CC0E7300D87240 /* Mocks.swift */,
 				1F1949ED23CD38C5001A9038 /* MoviesControllerMocks.swift */,
-				1F7FF5C023CC1A3800D87240 /* Model */,
+				1F194A1523CD6875001A9038 /* MoviesViewControllerMocks.swift */,
 			);
 			path = Mocks;
-			sourceTree = "<group>";
-		};
-		1F7FF5C023CC1A3800D87240 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1F7FF5B723CC0BDE00D87240 /* movies-mock-sucess.json */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		1F7FF5C923CD1DBA00D87240 /* Movies */ = {
@@ -553,6 +543,7 @@
 				1F08268F23C8CE7300E9FBAC /* Movies.swift in Sources */,
 				1F08266C23C50CE400E9FBAC /* UIColor + Extensions.swift in Sources */,
 				1F1949EE23CD38C5001A9038 /* MoviesControllerMocks.swift in Sources */,
+				1F194A1623CD6876001A9038 /* MoviesViewControllerMocks.swift in Sources */,
 				1F7FF5C423CCD65400D87240 /* DescriptionTableViewCell.swift in Sources */,
 				1F7FF5BA23CC0E1100D87240 /* RequestManager.swift in Sources */,
 				1F0825F223C3CB9000E9FBAC /* ViewController.swift in Sources */,
@@ -568,7 +559,6 @@
 				1F0825F023C3CB9000E9FBAC /* SceneDelegate.swift in Sources */,
 				1F7FF5BD23CC0E4F00D87240 /* MockingURLProtocol.swift in Sources */,
 				1F08269323C9027500E9FBAC /* DetailsViewController.swift in Sources */,
-				1F7FF5BF23CC0E7300D87240 /* Mocks.swift in Sources */,
 				1F7FF5C823CD1BC300D87240 /* UICollectionViewCell + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
