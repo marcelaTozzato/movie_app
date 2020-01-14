@@ -1,15 +1,15 @@
 //
-//  MovsTests.swift
-//  MovsTests
+//  MoviesControllerTests.swift
+//  movie_appTests
 //
-//  Created by Marcela Limieri Tozzato on 12/01/20.
+//  Created by Marcela Limieri Tozzato on 13/01/20.
 //  Copyright © 2020 Marcela Limieri Tozzato. All rights reserved.
 //
 
 import XCTest
 @testable import Movs
 
-class MovieControllerTests: XCTestCase, MoviesDataProviderDelegate {
+class MoviesControllerTests: XCTestCase, MoviesDataProviderDelegate {
 
     var sut: MoviesController?
     var provider: MoviesDataProvider?
@@ -53,4 +53,3 @@ class MovieControllerTests: XCTestCase, MoviesDataProviderDelegate {
         expect?.fulfill()
     }
 }
-
