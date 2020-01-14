@@ -21,6 +21,7 @@ class MoviesController {
     
     var arrayMovies: [Result] = []
     var selectedIndex: Int = 0
+    private var totalPages: Int = 1
     
     func setupController(moviesDataProviderDelegate: MoviesDataProviderDelegate) {
         provider = MoviesDataProvider()
@@ -43,13 +44,21 @@ class MoviesController {
     func loadCurrentCell(indexPath: Int) -> Result {
         return arrayMovies[indexPath]
     }
-
+    
+    func setTotalMoviePages(movie: Movies) {
+        self.totalPages = movie.totalPages
+    }
+    
+    func getTotalMoviePages() -> Int {
+        return self.totalPages
+    }
 }
 
 extension MoviesController: MoviesDataProviderDelegate {
     func sucessLoadMovie(movie: Movies) {
         for value in movie.results {
             self.arrayMovies.append(value)
+            self.setTotalMoviePages(movie: movie)
             self.delegate?.sucessLoadMovies()
         }
     }
@@ -57,6 +66,4 @@ extension MoviesController: MoviesDataProviderDelegate {
     func failLoadMovie(error: NetworkingError?) {
         self.delegate?.failLoadMovies(error: error)
     }
-    
-    
 }

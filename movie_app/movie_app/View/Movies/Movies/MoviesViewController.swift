@@ -10,13 +10,14 @@ import UIKit
 import Alamofire
 
 class MoviesViewController: UIViewController {
-
+    
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     
     
     var sessionManager: SessionManager = RequestManager().currentSessionManager(state: .live)
     var controller: MoviesController?
     var fetchingMore: Bool = false
+    private var currentPage: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +28,28 @@ class MoviesViewController: UIViewController {
         self.controller = MoviesController()
         self.controller?.delegate = self
         
-        self.controller?.loadMovies(sessionManager: sessionManager, page: 1)
+        self.controller?.loadMovies(sessionManager: sessionManager, page: currentPage)
         
+    }
+    
+    func incrementCurrentPage() -> Bool {
+        guard let controller = controller else {return false}
+        if self.currentPage <= controller.getTotalMoviePages() {
+            self.currentPage += 1
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func beginBatchFetch() {
+        fetchingMore = true
+        print("fetchingMore")
+        if incrementCurrentPage() {
+        self.controller?.loadMovies(sessionManager: sessionManager, page: currentPage)
+        self.moviesCollectionView.reloadData()
+        }
+        fetchingMore = false
     }
 }
 
@@ -67,18 +88,9 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
         
         if offsetY > contentHeight - scrollView.frame.height {
             if !fetchingMore {
-                beginBatchFech()
+                beginBatchFetch()
             }
         }
-    }
-    
-    func beginBatchFech() {
-        fetchingMore = true
-        print("BeginFetchingMore")
-        
-        self.controller?.loadMovies(sessionManager: sessionManager, page: 2)
-        self.moviesCollectionView.reloadData()
-        fetchingMore = false
     }
 }
 
@@ -89,5 +101,6 @@ extension MoviesViewController: MoviesControllerDelegate {
     
     func failLoadMovies(error: NetworkingError?) {
         print(error?.localizedDescription ?? "")
+        //TODO: Rever erros de invalid response que estou recebendo na pagina 4 (aparentemente um problema de parsing)
     }
 }
