@@ -24,49 +24,41 @@ class MoviesDataProvider {
     private let APIResource = "popular"
     private let APIKey = "40cf48ef896219470665035ae96b624a"
     private let APILanguage = "en-US"
-    private let APIPage = "1"
-
-    func getMoviesRequestURL() -> String {
+    
+    func getMoviesRequestURL(page: Int) -> String {
         
-        return "\(baseURL)/\(APIVersion)/\(APICategory)/\(APIResource)?api_key=\(APIKey)&language=\(APILanguage)&page=\(APIPage)"
+        return "\(baseURL)/\(APIVersion)/\(APICategory)/\(APIResource)?api_key=\(APIKey)&language=\(APILanguage)&page=\(page)"
     }
     
-    
-    func makeAPIRequest(method: HTTPMethod, requestState: RequestState, completion: @escaping (_ response: DataResponse<Any>) -> Void) {
-        
-        if let URL: URL = URL(string: getMoviesRequestURL()){
-            
-                requestState.session.request(URL, method: .get).responseJSON { (response) in
-                               completion(response)
-                           }
-        }
-    }
     
     func handleMovieList(movies: Movies) {
-         self.delegate?.sucessLoadMovie(movie: movies)
+        self.delegate?.sucessLoadMovie(movie: movies)
         
     }
-
     
-    func loadMovies(requestState: RequestState) {
+    
+    func loadMovies(sessionManager: SessionManager, page: Int) {
         
-        makeAPIRequest(method: .get, requestState: requestState) { (response) in
-            if response.response?.statusCode == 200 {
+        if let URL: URL = URL(string: getMoviesRequestURL(page: page)){
+            
+            sessionManager.request(URL, method: .get).responseJSON { (response) in
                 
-                do {
-                    let decodedObject: Movies = try JSONDecoder().decode(Movies.self, from: response.data ?? Data())
-                    self.handleMovieList(movies: decodedObject)
+                if response.response?.statusCode == 200 {
                     
-                } catch {
-                    self.delegate?.failLoadMovie(error: .invalidResponse)
+                    do {
+                        let decodedObject: Movies = try JSONDecoder().decode(Movies.self, from: response.data ?? Data())
+                        self.handleMovieList(movies: decodedObject)
+                        
+                    } catch {
+                        self.delegate?.failLoadMovie(error: .invalidResponse)
+                    }
+                    
+                } else {
+                    self.delegate?.failLoadMovie(error: .invalidRequest)
                 }
-                
-            } else {
-                self.delegate?.failLoadMovie(error: .invalidRequest)
             }
         }
     }
-
 }
 
 enum NetworkingError: String, Error {

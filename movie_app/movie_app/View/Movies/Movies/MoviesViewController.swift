@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Alamofire
 
 class MoviesViewController: UIViewController {
 
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     
+    
+    var sessionManager: SessionManager = RequestManager().currentSessionManager(state: .live)
     var controller: MoviesController?
     var fetchingMore: Bool = false
     
@@ -24,7 +27,7 @@ class MoviesViewController: UIViewController {
         self.controller = MoviesController()
         self.controller?.delegate = self
         
-        self.controller?.loadMovies(requestState: .live)
+        self.controller?.loadMovies(sessionManager: sessionManager, page: 1)
         
     }
 }
@@ -73,11 +76,10 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
         fetchingMore = true
         print("BeginFetchingMore")
         
-        self.controller?.loadMovies(requestState: .live)
+        self.controller?.loadMovies(sessionManager: sessionManager, page: 2)
         self.moviesCollectionView.reloadData()
+        fetchingMore = false
     }
-    
-    
 }
 
 extension MoviesViewController: MoviesControllerDelegate {

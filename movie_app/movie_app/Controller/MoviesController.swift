@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol MoviesControllerDelegate: class {
     func sucessLoadMovies()
@@ -26,13 +27,13 @@ class MoviesController {
         self.provider?.delegate = moviesDataProviderDelegate
     }
     
-    func loadMovies(requestState: RequestState) {
-        self.loadMovies(requestState: requestState, moviesDataProviderDelegate: self)
+    func loadMovies(sessionManager: SessionManager, page: Int) {
+        self.loadMovies(sessionManager: sessionManager, moviesDataProviderDelegate: self, page: page)
     }
     
-    func loadMovies(requestState: RequestState, moviesDataProviderDelegate: MoviesDataProviderDelegate) {
+    func loadMovies(sessionManager: SessionManager, moviesDataProviderDelegate: MoviesDataProviderDelegate, page: Int) {
         self.setupController(moviesDataProviderDelegate: moviesDataProviderDelegate)
-        self.provider?.loadMovies(requestState: requestState)
+        self.provider?.loadMovies(sessionManager: sessionManager, page: page)
     }
 
     func numberOfItensInSection() -> Int {
