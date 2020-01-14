@@ -9,9 +9,9 @@
 import XCTest
 @testable import Movs
 
-class MovsTests: XCTestCase, MoviesDataProviderDelegate {
+class MovieControllerTests: XCTestCase, MoviesDataProviderDelegate {
 
-    var controller: MoviesController?
+    var sut: MoviesController?
     var provider: MoviesDataProvider?
     var expect: XCTestExpectation?
     var runTests = {
@@ -21,13 +21,16 @@ class MovsTests: XCTestCase, MoviesDataProviderDelegate {
     
     override func setUp() {
         super.setUp()
-        controller = MoviesController()
+    
+        sut = MoviesController()
         provider = MoviesDataProvider()
         expect = expectation(description: "GetSuccess3Movies")
         runTests = {
             (movies: Movies) -> () in
-            XCTAssertEqual(movies.results.count, 3)
+            XCTAssertEqual(movies.results.count, 3, "Validação do mock: o resultado está diferente de 3")
+            XCTAssertEqual(self.sut?.arrayMovies.count, movies.results.count, "Validação do array de movies: o resultado deveria ser igual ao resultado do mock")
         }
+        
     }
 
     override func tearDown() {
@@ -35,20 +38,19 @@ class MovsTests: XCTestCase, MoviesDataProviderDelegate {
     }
     
     func testShouldGetMoviesWhenAllIsWorking() {
-        let client = RequestState.mock
         
-        controller?.loadMovies(requestState: client, moviesDataProviderDelegate: self)
+        sut?.loadMovies(sessionManager: RequestManager(mockingProtocol: MockingForSuccess3Movies.self).currentSessionManager(state: .mock), moviesDataProviderDelegate: self, page: 1)
         waitForExpectations(timeout: 5.0, handler:  nil)
     }
     
     func sucessLoadMovie(movie: Movies) {
         expect?.fulfill()
+        sut?.sucessLoadMovie(movie: movie)
         runTests(movie)
     }
     
     func failLoadMovie(error: NetworkingError?) {
         expect?.fulfill()
     }
-
 }
 

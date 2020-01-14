@@ -12,6 +12,10 @@ import Alamofire
 class MockingURLProtocol: URLProtocol {
     private let cannedHeaders = ["Content-Type" : "application/json; charset=utf-8"]
     
+    func getCannedHeaders() -> [String: String]{
+        return cannedHeaders
+    }
+    
     // MARK: Properties
     private struct PropertyKeys {
         static let handledByForwarderURLProtocol = "HandledByProxyURLProtocol"
