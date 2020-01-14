@@ -13,7 +13,6 @@ class MoviesViewController: UIViewController {
     
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     
-    
     var sessionManager: SessionManager = RequestManager().currentSessionManager(state: .live)
     var controller: MoviesController?
     var fetchingMore: Bool = false
@@ -28,18 +27,26 @@ class MoviesViewController: UIViewController {
         self.controller = MoviesController()
         self.controller?.delegate = self
         
-        self.controller?.loadMovies(sessionManager: sessionManager, page: currentPage)
+        loadMovies()
         
+    }
+
+    func loadMovies(){
+        controller?.loadMovies(sessionManager: sessionManager, page: self.getCurrentPage())
     }
     
     func incrementCurrentPage() -> Bool {
         guard let controller = controller else {return false}
-        if self.currentPage <= controller.getTotalMoviePages() {
+        if self.currentPage < controller.getTotalMoviePages() {
             self.currentPage += 1
             return true
         } else {
             return false
         }
+    }
+    
+    func getCurrentPage() -> Int {
+        return self.currentPage
     }
     
     func beginBatchFetch() {

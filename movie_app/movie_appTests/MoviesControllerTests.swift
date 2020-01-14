@@ -39,7 +39,7 @@ class MoviesControllerTests: XCTestCase, MoviesDataProviderDelegate {
     
     func testShouldGetMoviesWhenAllIsWorking() {
         
-        sut?.loadMovies(sessionManager: RequestManager(mockingProtocol: MockingForSuccess3Movies.self).currentSessionManager(state: .mock), moviesDataProviderDelegate: self, page: 1)
+        sut?.loadMovies(sessionManager: RequestManager(mockingProtocol: MoviesControllerMockingForSuccess3Movies.self).currentSessionManager(state: .mock), moviesDataProviderDelegate: self, page: 1)
         waitForExpectations(timeout: 5.0, handler:  nil)
     }
     

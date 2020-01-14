@@ -9,28 +9,17 @@
 import XCTest
 @testable import Movs
 
-class MoviesViewControllerTests: XCTestCase, MoviesDataProviderDelegate {
+class MoviesViewControllerTests: XCTestCase {
 
     var sut: MoviesViewController?
-//    var provider: MoviesDataProvider?
-//    var expect: XCTestExpectation?
-//    var runTests = {
-//        (movies: Movies) -> () in
-//    }
-//
-//
+    var mockedController: MoviesController?
+
     override func setUp() {
         super.setUp()
 
         sut = MoviesViewController()
-//        provider = MoviesDataProvider()
-//        expect = expectation(description: "GetSuccess3Movies")
-//        runTests = {
-//            (movies: Movies) -> () in
-//            XCTAssertEqual(movies.results.count, 3, "Validação do mock: o resultado está diferente de 3")
-//            XCTAssertEqual(self.sut?.arrayMovies.count, movies.results.count, "Validação do array de movies: o resultado deveria ser igual ao resultado do mock")
-//        }
-//
+        mockedController = MoviesViewControllerMockingControllerForSuccess2Pages()
+        sut?.controller = mockedController
     }
 
     override func tearDown() {
@@ -39,20 +28,11 @@ class MoviesViewControllerTests: XCTestCase, MoviesDataProviderDelegate {
     
     func testShouldIncrementCurrentPageWhenCurrentPageIsLessThanTotalPage(){
         
-    }
-//    func testShouldGetMoviesWhenAllIsWorking() {
-//
-//        sut?.loadMovies(sessionManager: RequestManager(mockingProtocol: MockingForSuccess3Movies.self).currentSessionManager(state: .mock), moviesDataProviderDelegate: self, page: 1)
-//        waitForExpectations(timeout: 5.0, handler:  nil)
-//    }
+        sut?.loadMovies()
+        XCTAssertEqual(sut?.getCurrentPage(), 1)
+        XCTAssertEqual(sut?.incrementCurrentPage(), true)
+        XCTAssertEqual(sut?.getCurrentPage(), 2)
+        XCTAssertEqual(sut?.incrementCurrentPage(), false)
+   }
 
-    func sucessLoadMovie(movie: Movies) {
-//        expect?.fulfill()
-//        sut?.sucessLoadMovie(movie: movie)
-//        runTests(movie)
-    }
-
-    func failLoadMovie(error: NetworkingError?) {
-//        expect?.fulfill()
-    }
 }
