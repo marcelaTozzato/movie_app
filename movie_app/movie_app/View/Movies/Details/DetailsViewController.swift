@@ -21,16 +21,7 @@ enum SectionType: String {
         case "Release": self = .release
         case "Synopsis": self = .synopsis
         default:
-            self = .image
-        }
-    }
-
-    var rawValue: String {
-        switch(self) {
-        case .image: return "Image"
-        case .title: return "Title"
-        case .release: return "Release"
-        case .synopsis: return "Synopsis"
+            self = .title
         }
     }
 }

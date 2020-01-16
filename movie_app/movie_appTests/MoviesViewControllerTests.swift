@@ -34,5 +34,4 @@ class MoviesViewControllerTests: XCTestCase {
         XCTAssertEqual(sut?.getCurrentPage(), 2)
         XCTAssertEqual(sut?.incrementCurrentPage(), false)
    }
-
 }

@@ -26,7 +26,7 @@ class RequestManager {
         self.mockManager = SessionManager(configuration: configuration)
     }
     
-    func currentSessionManager(state: RequestState) -> SessionManager {
+    func getSessionManager(state: RequestState) -> SessionManager {
         switch state {
         case .live:
             return liveManager

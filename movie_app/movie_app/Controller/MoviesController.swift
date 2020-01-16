@@ -13,7 +13,7 @@ protocol MoviesControllerDelegate: class {
     func sucessLoadMovies()
     func failLoadMovies(error: NetworkingError?)
 }
-
+  
 class MoviesController {
     
     var provider: MoviesDataProvider?

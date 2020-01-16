@@ -13,7 +13,7 @@ class MoviesViewController: UIViewController {
     
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     
-    var sessionManager: SessionManager = RequestManager().currentSessionManager(state: .live)
+    var sessionManager: SessionManager = RequestManager().getSessionManager(state: .live)
     var controller: MoviesController?
     var fetchingMore: Bool = false
     private var currentPage: Int = 1
