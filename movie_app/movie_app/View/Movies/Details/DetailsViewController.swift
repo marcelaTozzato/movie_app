@@ -30,7 +30,7 @@ class DetailsViewController: UIViewController {
     
     @IBOutlet weak var detailTableView: UITableView!
     
-    var currentMovie: Result?
+    var currentMovie: MoviesFill?
     var section: [String] = []
     var currentSession: SectionType?
     
@@ -60,7 +60,7 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
         switch currentSession {
         case .image:
             let cell: ImageTableViewCell = ImageTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
-            cell.setupCell(posterPath: currentMovie?.posterPath ?? "")
+            cell.setupCell(posterPath: currentMovie?.posterURL)
             return cell
         case .title:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
@@ -68,7 +68,7 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .release:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
-            cell.setupCell(description: currentMovie?.releaseDate ?? "")
+            cell.setupCell(description: currentMovie?.releaseYear ?? "")
             return cell
         case .synopsis:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)

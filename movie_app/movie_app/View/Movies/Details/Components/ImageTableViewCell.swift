@@ -12,15 +12,7 @@ class ImageTableViewCell: UITableViewCell {
 
     @IBOutlet weak var movieImage: UIImageView!
     
-    func getURLForImage(posterPath: String) -> URL? {
-        let baseURL = "https://image.tmdb.org/t/p"
-        let fileSize = "original"
-        
-        return URL(string: "\(baseURL)/\(fileSize)/\(posterPath)")
+    func setupCell(posterPath: URL?) {
+        self.movieImage.sd_setImage(with: posterPath)
     }
-    
-    func setupCell(posterPath: String) {
-        self.movieImage.sd_setImage(with: getURLForImage(posterPath: posterPath) )
-    }
-
 }

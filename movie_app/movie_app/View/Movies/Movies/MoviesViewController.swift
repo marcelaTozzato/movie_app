@@ -7,16 +7,13 @@
 //
 
 import UIKit
-import Alamofire
 
 class MoviesViewController: UIViewController {
     
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     
-    var sessionManager: SessionManager = RequestManager().getSessionManager(state: .live)
-    var controller: MoviesController?
+    fileprivate lazy var viewModel: MoviesViewModel = MoviesViewModel(delegate: self)
     var fetchingMore: Bool = false
-    private var currentPage: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,37 +21,19 @@ class MoviesViewController: UIViewController {
         self.moviesCollectionView.delegate = self
         self.moviesCollectionView.dataSource = self
         
-        self.controller = MoviesController()
-        self.controller?.delegate = self
-        
         loadMovies()
-        
     }
-
+    
     func loadMovies(){
-        controller?.loadMovies(sessionManager: sessionManager, page: self.getCurrentPage())
-    }
-    
-    func incrementCurrentPage() -> Bool {
-        guard let controller = controller else {return false}
-        if self.currentPage < controller.getTotalMoviePages() {
-            self.currentPage += 1
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func getCurrentPage() -> Int {
-        return self.currentPage
+        viewModel.loadMovies(page: viewModel.getCurrentPage())
     }
     
     func beginBatchFetch() {
         fetchingMore = true
         print("fetchingMore")
-        if incrementCurrentPage() {
-        self.controller?.loadMovies(sessionManager: sessionManager, page: currentPage)
-        self.moviesCollectionView.reloadData()
+        if viewModel.incrementCurrentPage() {
+            self.viewModel.loadMovies(page: viewModel.getCurrentPage())
+            self.moviesCollectionView.reloadData()
         }
         fetchingMore = false
     }
@@ -67,25 +46,24 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        controller?.selectedIndex = indexPath.row
         
         let storyBoard = UIStoryboard.init(name: "Movies", bundle: nil)
         
         guard let vc: DetailsViewController = storyBoard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController else {return}
         
-        vc.currentMovie = controller?.arrayMovies[indexPath.row]
+        vc.currentMovie = viewModel.arrayMoviesFill[indexPath.row]
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return controller?.numberOfItensInSection() ?? 0
+        return viewModel.numberOfItensInSection()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell: MoviesCollectionViewCell = MoviesCollectionViewCell.createCell(collectionView: collectionView, indexPath: indexPath)
-        cell.setupCell(movie: controller?.loadCurrentCell(indexPath: indexPath.row))
+        cell.setupCell(movie: viewModel.loadCurrentCell(indexPath: indexPath.row))
         return cell
     }
     
@@ -101,13 +79,12 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
     }
 }
 
-extension MoviesViewController: MoviesControllerDelegate {
-    func sucessLoadMovies() {
+extension MoviesViewController: MoviesViewModelDelegate {
+    func sucessLoadMovie() {
         self.moviesCollectionView.reloadData()
     }
     
-    func failLoadMovies(error: NetworkingError?) {
-        print(error?.localizedDescription ?? "")
-        //TODO: Rever erros de invalid response que estou recebendo na pagina 4 (aparentemente um problema de parsing)
+    func failLoadMovie(error: String) {
+        print(error)
     }
 }

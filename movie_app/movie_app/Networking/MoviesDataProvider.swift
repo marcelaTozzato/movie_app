@@ -9,65 +9,41 @@
 import Foundation
 import Alamofire
 
-protocol MoviesDataProviderDelegate: class {
-    func sucessLoadMovie(movie: Movies)
-    func failLoadMovie(error: NetworkingError?)
-}
-
-class MoviesDataProvider {
+class MoviesDataProvider: NSObject, MoviesProtocol {
     
-    weak var delegate: MoviesDataProviderDelegate?
+    private var sessionManager: SessionManager = RequestManager().getSessionManager(state: .live)
     
-    private let baseURL = "https://api.themoviedb.org"
-    private let APIVersion = "3"
-    private let APICategory = "movie"
-    private let APIResource = "popular"
-    private let APIKey = "40cf48ef896219470665035ae96b624a"
-    private let APILanguage = "en-US"
+    fileprivate let baseURL = "https://api.themoviedb.org"
+    fileprivate let APIVersion = "3"
+    fileprivate let APICategory = "movie"
+    fileprivate let APIResource = "popular"
+    fileprivate let APIKey = "40cf48ef896219470665035ae96b624a"
+    fileprivate let APILanguage = "en-US"
+    
+    func setSessionManager(sessionManager: SessionManager) {
+        self.sessionManager = sessionManager
+    }
     
     func getMoviesRequestURL(page: Int) -> String {
         
         return "\(baseURL)/\(APIVersion)/\(APICategory)/\(APIResource)?api_key=\(APIKey)&language=\(APILanguage)&page=\(page)"
     }
     
-    
-    func handleMovieList(movies: Movies) {
-        self.delegate?.sucessLoadMovie(movie: movies)
-        
-    }
-    
-    
-    func loadMovies(sessionManager: SessionManager, page: Int) {
-        
-        if let URL: URL = URL(string: getMoviesRequestURL(page: page)){
-            
-            sessionManager.request(URL, method: .get).responseJSON { (response) in
-                
+    func loadMovies(page: Int, completion: @escaping completion<MoviesObject?>) {
+                if let URL: URL = URL(string: getMoviesRequestURL(page: page)) {
+                    self.sessionManager.request(URL, method: .get).responseJSON { (response) in
                 if response.response?.statusCode == 200 {
-                    
                     do {
-                        let decodedObject: Movies = try JSONDecoder().decode(Movies.self, from: response.data ?? Data())
-                        self.handleMovieList(movies: decodedObject)
-                        
+                        let decodedObject: MoviesObject = try JSONDecoder().decode(MoviesObject.self, from: response.data ?? Data())
+                        completion(decodedObject, nil)
                     } catch {
-                        self.delegate?.failLoadMovie(error: .invalidResponse)
+                        completion(nil, .invalidResponse)
                     }
-                    
                 } else {
-                    self.delegate?.failLoadMovie(error: .invalidRequest)
+                    completion(nil, .invalidRequest)
                 }
             }
         }
     }
 }
 
-enum NetworkingError: String, Error {
-    
-    case invalidRequest = "Você fez uma requisição invalida"
-    case invalidResponse = "Há alguma coisa errada com a resposta que recebemos"
-}
-
-extension NetworkingError: LocalizedError {
-    
-    var errorDescription: String? { return NSLocalizedString(rawValue, comment: "")}
-}
