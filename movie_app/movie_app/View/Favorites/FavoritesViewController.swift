@@ -12,6 +12,7 @@ class FavoritesViewController: UIViewController {
     
     @IBOutlet var favoritesTableView: UITableView!
     var favoritesMovies: MoviesFill?
+    var savedFavorites: [MoviesFill]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,19 +28,22 @@ class FavoritesViewController: UIViewController {
     }
    
     @objc func savedFavorite(notification: NSNotification) {
-        self.favoritesMovies = Utils.getFavorite(key: "usersFavorite")
+        self.savedFavorites = Utils.getFavorite(key: "usersFavorite")
         self.favoritesTableView.reloadData()
     }
 }
 
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return savedFavorites?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoritesTableViewCell", for: indexPath) as? FavoritesTableViewCell
-        cell?.setupCell(description: favoritesMovies?.title ?? "ERRO")
+        guard let savedFavorites = savedFavorites else {return UITableViewCell()}
+        for value in savedFavorites {
+            cell?.setupCell(description: value.title)
+        }
         return cell ?? UITableViewCell()
     }
 }
