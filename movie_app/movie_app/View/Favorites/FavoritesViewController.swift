@@ -11,7 +11,6 @@ import UIKit
 class FavoritesViewController: UIViewController {
     
     @IBOutlet var favoritesTableView: UITableView!
-    var favoritesMovies: MoviesFill?
     var savedFavorites: [MoviesFill]?
     
     override func viewDidLoad() {
@@ -20,10 +19,11 @@ class FavoritesViewController: UIViewController {
         self.favoritesTableView.delegate = self
         self.favoritesTableView.dataSource = self
         
-        createSavedFavoriteObserver()
+        createGetFavoriteObserver()
+        self.savedFavorites = Utils.getFavorite(key: "usersFavorite")
     }
     
-    func createSavedFavoriteObserver() {
+    func createGetFavoriteObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(savedFavorite(notification:)), name: .savedFavorite, object: nil)
     }
    
@@ -41,9 +41,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoritesTableViewCell", for: indexPath) as? FavoritesTableViewCell
         guard let savedFavorites = savedFavorites else {return UITableViewCell()}
-        for value in savedFavorites {
-            cell?.setupCell(description: value.title)
-        }
+        cell?.setupCell(description: savedFavorites[indexPath.row])
         return cell ?? UITableViewCell()
     }
 }

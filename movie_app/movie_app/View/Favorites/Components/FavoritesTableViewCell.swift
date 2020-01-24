@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import SDWebImage
 
 class FavoritesTableViewCell: UITableViewCell {
 
     @IBOutlet var titleLbl: UILabel!
+    @IBOutlet var movieImage: UIImageView!
     
-    func setupCell(description: String){
-        titleLbl.text = description
+    func setupCell(description: MoviesFill){
+        titleLbl.text = description.title
+        movieImage.sd_setImage(with: description.posterURL)
     }
 }

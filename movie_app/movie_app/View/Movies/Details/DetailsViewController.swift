@@ -33,6 +33,7 @@ class DetailsViewController: UIViewController {
     var currentMovie: MoviesFill?
     var section: [String] = []
     var currentSession: SectionType?
+    var viewModel: FavoritesViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ class DetailsViewController: UIViewController {
         self.detailTableView.delegate = self
         self.detailTableView.dataSource = self
         
+        viewModel = FavoritesViewModel()
         section = ["Image", "Title", "Release", "Synopsis"]
     }
 }
@@ -66,6 +68,7 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
             cell.setupCell(description: currentMovie?.title ?? "")
             cell.currentMovie = self.currentMovie
+            cell.viewModel = self.viewModel
             return cell
         case .release:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)

@@ -12,6 +12,7 @@ class DescriptionTableViewCell: UITableViewCell {
     
     var currentMovie: MoviesFill?
     var arrayFavorites: [MoviesFill] = []
+    var viewModel: FavoritesViewModel?
     
     @IBOutlet weak var movieLbl: UILabel!
     @IBOutlet weak var favoritesButton: UIButton!
@@ -22,6 +23,8 @@ class DescriptionTableViewCell: UITableViewCell {
     
     @IBAction func clickedFavoritesButton(_ sender: UIButton){
         guard let currentMovie = currentMovie else {return}
+//        viewModel?.setArrayFavoritesMovies(movie: currentMovie)
+        arrayFavorites = Utils.getFavorite(key: "usersFavorite") ?? []
         arrayFavorites.append(currentMovie)
         print("ARRAY")
         for value in arrayFavorites{

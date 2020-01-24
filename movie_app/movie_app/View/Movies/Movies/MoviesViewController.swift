@@ -24,7 +24,7 @@ class MoviesViewController: UIViewController {
         loadMovies()
     }
     
-    func loadMovies(){
+    func loadMovies() {
         viewModel.loadMovies(page: viewModel.getCurrentPage())
     }
     
