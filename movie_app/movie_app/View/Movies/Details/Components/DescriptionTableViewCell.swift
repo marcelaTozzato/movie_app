@@ -11,8 +11,7 @@ import UIKit
 class DescriptionTableViewCell: UITableViewCell {
     
     var currentMovie: MoviesFill?
-    var arrayFavorites: [MoviesFill] = []
-    var viewModel: FavoritesViewModel?
+    lazy var viewModel: FavoritesViewModel = FavoritesViewModel()
     
     @IBOutlet weak var movieLbl: UILabel!
     @IBOutlet weak var favoritesButton: UIButton!
@@ -23,14 +22,8 @@ class DescriptionTableViewCell: UITableViewCell {
     
     @IBAction func clickedFavoritesButton(_ sender: UIButton){
         guard let currentMovie = currentMovie else {return}
-//        viewModel?.setArrayFavoritesMovies(movie: currentMovie)
-        arrayFavorites = Utils.getFavorite(key: "usersFavorite") ?? []
-        arrayFavorites.append(currentMovie)
-        print("ARRAY")
-        for value in arrayFavorites{
-            print (value.title)
-        }
-        Utils.setFavorite(value: arrayFavorites, key: "usersFavorite")
-        NotificationCenter.default.post(name: .savedFavorite, object: nil)
+        viewModel.setArrayFavoritesMovies()
+        let currentMovieDataDict = ["currentMovie": currentMovie]
+        NotificationCenter.default.post(name: .savedFavorite, object: nil, userInfo: currentMovieDataDict)
     }
 }

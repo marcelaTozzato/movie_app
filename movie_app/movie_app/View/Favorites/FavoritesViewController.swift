@@ -18,16 +18,9 @@ class FavoritesViewController: UIViewController {
         
         self.favoritesTableView.delegate = self
         self.favoritesTableView.dataSource = self
-        
-        createGetFavoriteObserver()
-        self.savedFavorites = Utils.getFavorite(key: "usersFavorite")
     }
     
-    func createGetFavoriteObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(savedFavorite(notification:)), name: .savedFavorite, object: nil)
-    }
-   
-    @objc func savedFavorite(notification: NSNotification) {
+    override func viewWillAppear(_ animated: Bool) {
         self.savedFavorites = Utils.getFavorite(key: "usersFavorite")
         self.favoritesTableView.reloadData()
     }

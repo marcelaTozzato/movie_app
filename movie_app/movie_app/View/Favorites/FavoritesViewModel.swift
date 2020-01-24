@@ -10,14 +10,19 @@ import Foundation
 
 class FavoritesViewModel {
     
-    private var arrayFavoritesMovies: [MoviesFill]? = Utils.getFavorite(key: "usersFavorite")
+    private var arrayFavoritesMovies: [MoviesFill]?
     
-    func setArrayFavoritesMovies(movie: MoviesFill) {
-        self.arrayFavoritesMovies?.append(movie)
-        guard let arrayFavoritesMovies = arrayFavoritesMovies else {return}
-        for value in arrayFavoritesMovies {
-            print ("ARRAY")
-            print (value.title)
+    func setArrayFavoritesMovies() {
+        arrayFavoritesMovies = Utils.getFavorite(key: "usersFavorite")
+        NotificationCenter.default.addObserver(self, selector: #selector(appendArrayFavoritesMovies(notification:)), name: .savedFavorite, object: nil)
+    }
+
+    @objc func appendArrayFavoritesMovies(notification: NSNotification) {
+        if let dict = notification.userInfo as NSDictionary? {
+            if let currentMovie = dict["currentMovie"] as? MoviesFill {
+                self.arrayFavoritesMovies?.append(currentMovie)
+            }
         }
+        Utils.setFavorite(value: arrayFavoritesMovies, key: "usersFavorite")
     }
 }
