@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MoviesFill: Codable {
+struct MoviesFill: Codable, Equatable {
     
     var title: String
     var releaseYear: String

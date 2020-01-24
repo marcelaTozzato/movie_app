@@ -42,6 +42,7 @@
 		7847B70023DA4B1500FFA641 /* MockDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7847B6FD23DA49E800FFA641 /* MockDelegate.swift */; };
 		7847B70723DB29AD00FFA641 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7847B70623DB29AD00FFA641 /* FavoritesTableViewCell.swift */; };
 		7847B70923DB308600FFA641 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7847B70823DB308600FFA641 /* Utils.swift */; };
+		78626CE023DBA135009084A6 /* Array + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78626CDF23DBA135009084A6 /* Array + Extension.swift */; };
 		788DFFC723DB58C100466DED /* Notification.Name + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788DFFC623DB58C100466DED /* Notification.Name + Extension.swift */; };
 		788DFFC923DB6AF400466DED /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788DFFC823DB6AF400466DED /* FavoritesViewModel.swift */; };
 		D01E51EC9A1D25DD2F96FC0F /* Pods_movie_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C0EA38E56C4AF9D38745FF /* Pods_movie_app.framework */; };
@@ -112,6 +113,7 @@
 		7847B6FD23DA49E800FFA641 /* MockDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDelegate.swift; sourceTree = "<group>"; };
 		7847B70623DB29AD00FFA641 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		7847B70823DB308600FFA641 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		78626CDF23DBA135009084A6 /* Array + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Extension.swift"; sourceTree = "<group>"; };
 		788DFFC623DB58C100466DED /* Notification.Name + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name + Extension.swift"; sourceTree = "<group>"; };
 		788DFFC823DB6AF400466DED /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		C352CEA1ED19DAAC78E466AC /* Pods-movie_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-movie_app.release.xcconfig"; path = "Target Support Files/Pods-movie_app/Pods-movie_app.release.xcconfig"; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				1F7FF5C523CCDDFE00D87240 /* UITableViewCell + Extensions.swift */,
 				1F7FF5C723CD1BC300D87240 /* UICollectionViewCell + Extension.swift */,
 				788DFFC623DB58C100466DED /* Notification.Name + Extension.swift */,
+				78626CDF23DBA135009084A6 /* Array + Extension.swift */,
 				7847B6F723D9E3AF00FFA641 /* NetworkingError.swift */,
 				7847B70823DB308600FFA641 /* Utils.swift */,
 			);
@@ -615,6 +618,7 @@
 				7847B70723DB29AD00FFA641 /* FavoritesTableViewCell.swift in Sources */,
 				7847B6FB23DA01DC00FFA641 /* MoviesFill.swift in Sources */,
 				7847B6F823D9E3AF00FFA641 /* NetworkingError.swift in Sources */,
+				78626CE023DBA135009084A6 /* Array + Extension.swift in Sources */,
 				1F7FF5C223CCD4CA00D87240 /* ImageTableViewCell.swift in Sources */,
 				1F08267023C546F800E9FBAC /* MoviesViewController.swift in Sources */,
 				1F0825F023C3CB9000E9FBAC /* SceneDelegate.swift in Sources */,

@@ -11,7 +11,7 @@ import Foundation
 class FavoritesViewModel {
     
     private var arrayFavoritesMovies: [MoviesFill]?
-    
+
     func setArrayFavoritesMovies() {
         arrayFavoritesMovies = Utils.getFavorite(key: "usersFavorite")
         NotificationCenter.default.addObserver(self, selector: #selector(appendArrayFavoritesMovies(notification:)), name: .savedFavorite, object: nil)
@@ -20,9 +20,18 @@ class FavoritesViewModel {
     @objc func appendArrayFavoritesMovies(notification: NSNotification) {
         if let dict = notification.userInfo as NSDictionary? {
             if let currentMovie = dict["currentMovie"] as? MoviesFill {
-                self.arrayFavoritesMovies?.append(currentMovie)
+                self.checkIfMovieAlreadyExistsInArray(movie: currentMovie)
             }
         }
         Utils.setFavorite(value: arrayFavoritesMovies, key: "usersFavorite")
+    }
+    
+    func checkIfMovieAlreadyExistsInArray(movie: MoviesFill){
+        guard let array = arrayFavoritesMovies else {return}
+        if !array.contains(obj: movie) {
+            self.arrayFavoritesMovies?.append(movie)
+        } else {
+            arrayFavoritesMovies = self.arrayFavoritesMovies?.filter { $0 != movie}
+        }
     }
 }
