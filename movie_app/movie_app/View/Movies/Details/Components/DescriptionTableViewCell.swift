@@ -21,5 +21,6 @@ class DescriptionTableViewCell: UITableViewCell {
     
     @IBAction func clickedFavoritesButton(_ sender: UIButton){
         Utils.setFavorite(value: currentMovie, key: "usersFavorite")
+        NotificationCenter.default.post(name: .savedFavorite, object: nil)
     }
 }

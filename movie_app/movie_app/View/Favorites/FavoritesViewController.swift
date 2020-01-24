@@ -9,16 +9,26 @@
 import UIKit
 
 class FavoritesViewController: UIViewController {
-
+    
     @IBOutlet var favoritesTableView: UITableView!
-    var favoritesMovies: MoviesFill? = Utils.getFavorite(key: "usersFavorite")
+    var favoritesMovies: MoviesFill?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.favoritesTableView.delegate = self
         self.favoritesTableView.dataSource = self
-
+        
+        createSavedFavoriteObserver()
+    }
+    
+    func createSavedFavoriteObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(savedFavorite(notification:)), name: .savedFavorite, object: nil)
+    }
+   
+    @objc func savedFavorite(notification: NSNotification) {
+        self.favoritesMovies = Utils.getFavorite(key: "usersFavorite")
+        self.favoritesTableView.reloadData()
     }
 }
 
