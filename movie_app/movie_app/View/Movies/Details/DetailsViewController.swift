@@ -64,14 +64,17 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .title:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
+//            cell.favoritesButton.isEnabled = true
             cell.setupCell(description: currentMovie?.title ?? "")
             return cell
         case .release:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
+            cell.favoritesButton.isHidden = true
             cell.setupCell(description: currentMovie?.releaseYear ?? "")
             return cell
         case .synopsis:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
+            cell.favoritesButton.isHidden = true
             cell.setupCell(description: currentMovie?.overview ?? "")
             return cell
         default:

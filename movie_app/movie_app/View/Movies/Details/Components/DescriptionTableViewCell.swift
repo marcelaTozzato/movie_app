@@ -11,8 +11,13 @@ import UIKit
 class DescriptionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var movieLbl: UILabel!
-
+    @IBOutlet weak var favoritesButton: UIButton!
+    
     func setupCell(description: String) {
         movieLbl.text = description
     }
+    
+    @IBAction func clickedFavoritesButton(_ sender: UIButton) {
+    }
+    
 }
