@@ -11,6 +11,7 @@ import UIKit
 class FavoritesViewController: UIViewController {
 
     @IBOutlet var favoritesTableView: UITableView!
+    var favoritesMovies: MoviesFill? = Utils.getFavorite(key: "usersFavorite")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +22,14 @@ class FavoritesViewController: UIViewController {
     }
 }
 
-
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FavoritesTableViewCell", for: indexPath) as? FavoritesTableViewCell
+        cell?.setupCell(description: favoritesMovies?.title ?? "ERRO")
+        return cell ?? UITableViewCell()
     }
-    
-    
 }
