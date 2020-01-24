@@ -20,10 +20,21 @@ class DescriptionTableViewCell: UITableViewCell {
         movieLbl.text = description
     }
     
+    func setupButton() {
+        let isFavorite: Bool = UserDefaults.standard.getIsFavorite()
+        print(isFavorite)
+        if isFavorite {
+            self.favoritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            self.favoritesButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+    }
+    
     @IBAction func clickedFavoritesButton(_ sender: UIButton){
         guard let currentMovie = currentMovie else {return}
         viewModel.setArrayFavoritesMovies()
         let currentMovieDataDict = ["currentMovie": currentMovie]
         NotificationCenter.default.post(name: .savedFavorite, object: nil, userInfo: currentMovieDataDict)
+        setupButton()
     }
 }

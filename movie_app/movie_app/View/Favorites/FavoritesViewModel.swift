@@ -11,6 +11,10 @@ import Foundation
 class FavoritesViewModel {
     
     private var arrayFavoritesMovies: [MoviesFill]?
+    
+//    deinit {
+//        NotificationCenter.default.removeObserver(self)
+//    }
 
     func setArrayFavoritesMovies() {
         arrayFavoritesMovies = Utils.getFavorite(key: "usersFavorite")
@@ -27,11 +31,14 @@ class FavoritesViewModel {
     }
     
     func checkIfMovieAlreadyExistsInArray(movie: MoviesFill){
+        print("PASSEI POR AQUI")
         guard let array = arrayFavoritesMovies else {return}
         if !array.contains(obj: movie) {
             self.arrayFavoritesMovies?.append(movie)
+            UserDefaults.standard.setIsFavorite(value: true)
         } else {
             arrayFavoritesMovies = self.arrayFavoritesMovies?.filter { $0 != movie}
+            UserDefaults.standard.setIsFavorite(value: false)
         }
     }
 }

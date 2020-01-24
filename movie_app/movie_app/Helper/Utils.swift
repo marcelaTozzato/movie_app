@@ -19,4 +19,20 @@ class Utils {
         let favoriteMovie = try? PropertyListDecoder().decode([T].self, from: favoriteMovieData ?? Data())
         return favoriteMovie
     }
+    
+    static func isFavorite (value: Bool, key: String) -> Bool {
+        
+        return true
+    }
+}
+
+extension UserDefaults {
+    func setIsFavorite(value: Bool) {
+        set(value, forKey: "isFavorite")
+        synchronize()
+    }
+    
+    func getIsFavorite() -> Bool {
+        return bool(forKey: "isFavorite")
+    }
 }

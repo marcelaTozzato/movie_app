@@ -66,6 +66,7 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
             cell.setupCell(description: currentMovie?.title ?? "")
             cell.currentMovie = self.currentMovie
+            cell.setupButton()
             return cell
         case .release:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
