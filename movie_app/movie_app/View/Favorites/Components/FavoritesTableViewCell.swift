@@ -13,11 +13,19 @@ class FavoritesTableViewCell: UITableViewCell {
 
     @IBOutlet var titleLbl: UILabel!
     @IBOutlet var movieImage: UIImageView!
+    @IBOutlet var yearLbl: UILabel!
+    @IBOutlet var overviewLbl: UILabel!
     
     func setupCell(description: MoviesFill){
         titleLbl.text = description.title
+        yearLbl.text = description.releaseYear
+        overviewLbl.text = description.overview
         movieImage.sd_setImage(with: description.posterURL)
-        titleLbl.textColor = Theme.current.textColor
-        UITableViewCell.appearance().backgroundColor = Theme.current.background
+        
+//        titleLbl.textColor = Theme.current.textColor
+//        yearLbl.textColor = Theme.current.textColor
+//        overviewLbl.textColor = Theme.current.textColor
+//        UITableViewCell.appearance().backgroundColor = Theme.current.favoritesCellBackground
     }
+    
 }

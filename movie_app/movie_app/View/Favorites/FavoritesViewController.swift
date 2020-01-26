@@ -20,11 +20,11 @@ class FavoritesViewController: UIViewController {
         self.favoritesTableView.dataSource = self
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         self.savedFavorites = Utils.getFavorite(key: "usersFavorite")
+//        self.favoritesTableView.backgroundColor = Theme.current.ViewBackground
         self.favoritesTableView.reloadData()
-        self.favoritesTableView.backgroundColor = Theme.current.background
     }
 }
 

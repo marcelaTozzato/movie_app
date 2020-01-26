@@ -11,14 +11,16 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     @IBOutlet var themeLabel: UILabel!
+    @IBOutlet weak var themeChageSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         applyTheme()
-
+        themeChageSwitch.isOn = UserDefaults.standard.getTheme()
     }
     
     @IBAction func themeChangeSwitch(_ sender: UISwitch) {
+        
         Theme.current = sender.isOn ? LightTheme() : DarkTheme()
             
         UserDefaults.standard.setTheme(value: sender.isOn)
@@ -28,11 +30,7 @@ class SettingsViewController: UIViewController {
     }
     
     fileprivate func applyTheme() {
-        view.backgroundColor = Theme.current.background
+        view.backgroundColor = Theme.current.ViewBackground
         themeLabel.textColor = Theme.current.textColor
     }
-    
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return Theme.current.statusBar
-//    }
 }

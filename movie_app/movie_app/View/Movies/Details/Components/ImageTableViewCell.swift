@@ -14,5 +14,6 @@ class ImageTableViewCell: UITableViewCell {
     
     func setupCell(posterPath: URL?) {
         self.movieImage.sd_setImage(with: posterPath)
+//        UITableViewCell.appearance().backgroundColor = Theme.current.ViewBackground
     }
 }

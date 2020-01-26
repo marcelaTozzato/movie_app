@@ -27,8 +27,8 @@ class MoviesViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        view.backgroundColor = Theme.current.background
-        moviesCollectionView.backgroundColor = Theme.current.background
+        view.backgroundColor = Theme.current.ViewBackground
+        moviesCollectionView.backgroundColor = Theme.current.ViewBackground
         moviesCollectionView.reloadData()
     }
     

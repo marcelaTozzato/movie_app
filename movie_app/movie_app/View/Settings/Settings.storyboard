@@ -47,6 +47,7 @@
                     <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="hqG-tb-0Ox"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="themeChageSwitch" destination="YMp-Vq-umJ" id="yYh-iJ-y9a"/>
                         <outlet property="themeLabel" destination="6zK-xO-mah" id="hAK-gg-DHu"/>
                     </connections>
                 </viewController>

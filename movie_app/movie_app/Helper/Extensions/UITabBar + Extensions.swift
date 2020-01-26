@@ -12,6 +12,6 @@ extension UITabBar {
     static func applyTheme() {
         UITabBar.appearance().barTintColor = Theme.current.barTint
         UITabBar.appearance().tintColor = Theme.current.textTint
-        UITabBar.appearance().backgroundColor = Theme.current.background
+        UITabBar.appearance().backgroundColor = Theme.current.ViewBackground
     }
 }

@@ -18,6 +18,8 @@ class DescriptionTableViewCell: UITableViewCell {
     
     func setupCell(description: String) {
         movieLbl.text = description
+        
+//        UITableViewCell.appearance().backgroundColor = Theme.current.ViewBackground
     }
     
     func setupButton() {
