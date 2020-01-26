@@ -22,10 +22,10 @@ class FavoritesTableViewCell: UITableViewCell {
         overviewLbl.text = description.overview
         movieImage.sd_setImage(with: description.posterURL)
         
-//        titleLbl.textColor = Theme.current.textColor
-//        yearLbl.textColor = Theme.current.textColor
-//        overviewLbl.textColor = Theme.current.textColor
-//        UITableViewCell.appearance().backgroundColor = Theme.current.favoritesCellBackground
+        titleLbl.textColor = Theme.current.textColor
+        yearLbl.textColor = Theme.current.textColor
+        overviewLbl.textColor = Theme.current.textColor
+        UITableViewCell.appearance().backgroundColor = Theme.current.favoritesCellBackground
     }
     
 }

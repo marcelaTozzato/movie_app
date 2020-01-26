@@ -19,22 +19,32 @@ protocol ThemeProtocol: class {
 }
 
 class LightTheme: ThemeProtocol {
+    //BACKGROUND
     var ViewBackground: UIColor = .white
-    var barTint: UIColor = .customLigthYellow
-    var favoritesCellBackground: UIColor = .green
-    var textColor: UIColor = .black
-    var textTint: UIColor = .black
+    var favoritesCellBackground: UIColor = .white
     var movieCellBackground: UIColor = .customDarkBlue
+    
+    //TAB BAR AND NAVIGATION CONTROLLER
+    var barTint: UIColor = .customLigthYellow
+    var textTint: UIColor = .black
+    
+    //TEXT:
+    var textColor: UIColor = .black
     var font: String = "WillGrace"
 }
 
 class DarkTheme: ThemeProtocol {
-    var ViewBackground: UIColor = .black
-    var barTint: UIColor = .customLigthYellow //.customDarkBlue
-    var favoritesCellBackground: UIColor = .red
-    var textColor: UIColor = .white
-    var textTint: UIColor = .black //.white
+    //BACKGROUND
+    var ViewBackground: UIColor = .darkGray
+    var favoritesCellBackground: UIColor = .darkGray
     var movieCellBackground: UIColor = .customDarkYellow
+    
+    //TAB BAR AND NAVIGATION CONTROLLER
+    var barTint: UIColor = .customLigthYellow //.customDarkBlue
+    var textTint: UIColor = .black //.white
+    
+    //TEXT:
+    var textColor: UIColor = .white
     var font: String = "WillGrace"
 }
 

@@ -199,18 +199,20 @@
 		1F0825EC23C3CB9000E9FBAC /* movie_app */ = {
 			isa = PBXGroup;
 			children = (
-				1FF8A87D23DE0A52009B6CFC /* Fonts */,
-				1F7FF5BB23CC0E3700D87240 /* Mocks */,
-				1F08262423C3CCCC00E9FBAC /* View */,
-				1F08262223C3CC8800E9FBAC /* Model */,
-				1F08262023C3CC7300E9FBAC /* Networking */,
-				1F08262523C3CCD400E9FBAC /* Helper */,
 				1F0825ED23C3CB9000E9FBAC /* AppDelegate.swift */,
 				1F0825EF23C3CB9000E9FBAC /* SceneDelegate.swift */,
 				1F0825F923C3CB9000E9FBAC /* Assets.xcassets */,
 				1F0825FB23C3CB9000E9FBAC /* LaunchScreen.storyboard */,
 				1F0825FE23C3CB9000E9FBAC /* Info.plist */,
 				1F0825F623C3CB9000E9FBAC /* movie_app.xcdatamodeld */,
+				1F7FF5BB23CC0E3700D87240 /* Mocks */,
+				1F08262423C3CCCC00E9FBAC /* View */,
+				1FF8A88223DE415D009B6CFC /* ViewModel */,
+				1F08262023C3CC7300E9FBAC /* Networking */,
+				1F08262223C3CC8800E9FBAC /* Model */,
+				1FF8A87423DDE5E7009B6CFC /* Extensions */,
+				1F08262523C3CCD400E9FBAC /* Helper */,
+				1FF8A87D23DE0A52009B6CFC /* Fonts */,
 			);
 			path = movie_app;
 			sourceTree = "<group>";
@@ -246,8 +248,13 @@
 		1F08262423C3CCCC00E9FBAC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1F0825F323C3CB9000E9FBAC /* Main.storyboard */,
+				1F08266523C5081200E9FBAC /* Movies.storyboard */,
+				1F08266723C5081F00E9FBAC /* Favorites.storyboard */,
+				1FF8A87023DDB8F7009B6CFC /* Settings.storyboard */,
 				7847B6FC23DA324700FFA641 /* Main */,
 				1F08266923C50C7200E9FBAC /* Movies */,
+				1F7FF5CB23CD1DF100D87240 /* Details */,
 				1F08266A23C50C8800E9FBAC /* Favorites */,
 				1FF8A86D23DDB889009B6CFC /* Settings */,
 			);
@@ -257,7 +264,6 @@
 		1F08262523C3CCD400E9FBAC /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				1FF8A87423DDE5E7009B6CFC /* Extensions */,
 				7847B6F723D9E3AF00FFA641 /* NetworkingError.swift */,
 				7847B70823DB308600FFA641 /* Utils.swift */,
 				1FF8A87223DDE01C009B6CFC /* Theme.swift */,
@@ -268,10 +274,8 @@
 		1F08266923C50C7200E9FBAC /* Movies */ = {
 			isa = PBXGroup;
 			children = (
-				7815D31223D8F17200420928 /* MoviesViewModel.swift */,
-				1F08266523C5081200E9FBAC /* Movies.storyboard */,
-				1F7FF5C923CD1DBA00D87240 /* Movies */,
-				1F7FF5CB23CD1DF100D87240 /* Details */,
+				1F08266F23C546F800E9FBAC /* MoviesViewController.swift */,
+				1F7FF5CA23CD1DDB00D87240 /* Components */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -279,8 +283,6 @@
 		1F08266A23C50C8800E9FBAC /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				788DFFC823DB6AF400466DED /* FavoritesViewModel.swift */,
-				1F08266723C5081F00E9FBAC /* Favorites.storyboard */,
 				1F08266D23C5178B00E9FBAC /* FavoritesViewController.swift */,
 				7847B70223DB294F00FFA641 /* Components */,
 			);
@@ -306,15 +308,6 @@
 				7847B6FD23DA49E800FFA641 /* MockDelegate.swift */,
 			);
 			path = Mocks;
-			sourceTree = "<group>";
-		};
-		1F7FF5C923CD1DBA00D87240 /* Movies */ = {
-			isa = PBXGroup;
-			children = (
-				1F08266F23C546F800E9FBAC /* MoviesViewController.swift */,
-				1F7FF5CA23CD1DDB00D87240 /* Components */,
-			);
-			path = Movies;
 			sourceTree = "<group>";
 		};
 		1F7FF5CA23CD1DDB00D87240 /* Components */ = {
@@ -347,7 +340,6 @@
 			isa = PBXGroup;
 			children = (
 				1FF8A86E23DDB8DC009B6CFC /* SettingsViewController.swift */,
-				1FF8A87023DDB8F7009B6CFC /* Settings.storyboard */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -374,6 +366,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		1FF8A88223DE415D009B6CFC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				788DFFC823DB6AF400466DED /* FavoritesViewModel.swift */,
+				7815D31223D8F17200420928 /* MoviesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		6B5260BE3362D14DC3A11A5F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,7 +388,6 @@
 		7847B6FC23DA324700FFA641 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				1F0825F323C3CB9000E9FBAC /* Main.storyboard */,
 				1F0825F123C3CB9000E9FBAC /* ViewController.swift */,
 			);
 			path = Main;

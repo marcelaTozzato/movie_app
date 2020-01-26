@@ -42,6 +42,12 @@ class DetailsViewController: UIViewController {
         
         section = ["Image", "Title", "Release", "Synopsis"]
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        view.backgroundColor = Theme.current.ViewBackground
+        detailTableView.backgroundColor = Theme.current.ViewBackground
+        detailTableView.reloadData()
+    }
 }
 
 extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
