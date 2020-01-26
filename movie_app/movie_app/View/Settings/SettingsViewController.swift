@@ -30,6 +30,9 @@ class SettingsViewController: UIViewController {
     fileprivate func applyTheme() {
         view.backgroundColor = Theme.current.background
         themeLabel.textColor = Theme.current.textColor
-        
     }
+    
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return Theme.current.statusBar
+//    }
 }

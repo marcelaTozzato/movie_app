@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.object(forKey: "isLightTheme") != nil {
             Theme.current = UserDefaults.standard.getTheme() ? LightTheme() : DarkTheme()
         }
+        
         UITabBar.applyTheme()
         UINavigationBar.applyTheme()
         

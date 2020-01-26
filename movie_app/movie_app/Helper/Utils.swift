@@ -27,15 +27,7 @@ class Utils {
 }  
 
 extension UserDefaults {
-    func setIsFavorite(value: Bool) {
-        set(value, forKey: "isFavorite")
-        synchronize()
-    }
-    
-    func getIsFavorite() -> Bool {
-        return bool(forKey: "isFavorite")
-    }
-    
+
     func setTheme(value: Bool) {
         set(value, forKey: "isLightTheme")
         synchronize()

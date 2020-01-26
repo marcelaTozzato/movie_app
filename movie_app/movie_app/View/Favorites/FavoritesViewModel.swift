@@ -10,15 +10,18 @@ import Foundation
 
 class FavoritesViewModel {
     
-    private var arrayFavoritesMovies: [MoviesFill]?
+    private var arrayFavoritesMovies: [MoviesFill] = Utils.getFavorite(key: "usersFavorite") ?? [MoviesFill]()
     
-//    deinit {
-//        NotificationCenter.default.removeObserver(self)
-//    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     func setArrayFavoritesMovies() {
-        arrayFavoritesMovies = Utils.getFavorite(key: "usersFavorite")
         NotificationCenter.default.addObserver(self, selector: #selector(appendArrayFavoritesMovies(notification:)), name: .savedFavorite, object: nil)
+    }
+    
+    func getArrayFavoritesMovies() -> [MoviesFill]{
+        return arrayFavoritesMovies
     }
 
     @objc func appendArrayFavoritesMovies(notification: NSNotification) {
@@ -28,17 +31,14 @@ class FavoritesViewModel {
             }
         }
         Utils.setFavorite(value: arrayFavoritesMovies, key: "usersFavorite")
+        NotificationCenter.default.removeObserver(self)
     }
     
     func checkIfMovieAlreadyExistsInArray(movie: MoviesFill){
-        print("PASSEI POR AQUI")
-        guard let array = arrayFavoritesMovies else {return}
-        if !array.contains(obj: movie) {
-            self.arrayFavoritesMovies?.append(movie)
-            UserDefaults.standard.setIsFavorite(value: true)
+        if !arrayFavoritesMovies.contains(obj: movie) {
+            self.arrayFavoritesMovies.append(movie)
         } else {
-            arrayFavoritesMovies = self.arrayFavoritesMovies?.filter { $0 != movie}
-            UserDefaults.standard.setIsFavorite(value: false)
+            arrayFavoritesMovies = self.arrayFavoritesMovies.filter {$0 != movie}
         }
     }
 }

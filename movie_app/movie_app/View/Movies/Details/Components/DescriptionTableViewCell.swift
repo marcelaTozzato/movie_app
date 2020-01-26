@@ -21,8 +21,7 @@ class DescriptionTableViewCell: UITableViewCell {
     }
     
     func setupButton() {
-        let isFavorite: Bool = UserDefaults.standard.getIsFavorite()
-        print(isFavorite)
+        let isFavorite: Bool = viewModel.getArrayFavoritesMovies().contains(obj: currentMovie)
         if isFavorite {
             self.favoritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
@@ -38,3 +37,4 @@ class DescriptionTableViewCell: UITableViewCell {
         setupButton()
     }
 }
+

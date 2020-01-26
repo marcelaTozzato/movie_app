@@ -14,7 +14,7 @@ extension UIColor {
     static let customLigthYellow = UIColor().colorFromHex("#F7CE5B")
     static let customDarkYellow = UIColor().colorFromHex("#D9971E")
     static let customDarkBlue = UIColor().colorFromHex("#2D3047")
-    static let customLigthBlue = UIColor().colorFromHex("#B5B7C9")
+    static let customLigthBlue = UIColor().colorFromHex("#404463")
     
     func colorFromHex(_ hex: String) -> UIColor {
         var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

@@ -17,5 +17,7 @@ class FavoritesTableViewCell: UITableViewCell {
     func setupCell(description: MoviesFill){
         titleLbl.text = description.title
         movieImage.sd_setImage(with: description.posterURL)
+        titleLbl.textColor = Theme.current.textColor
+        UITableViewCell.appearance().backgroundColor = Theme.current.background
     }
 }

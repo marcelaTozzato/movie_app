@@ -22,6 +22,14 @@ class MoviesViewController: UIViewController {
         self.moviesCollectionView.dataSource = self
         
         loadMovies()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        view.backgroundColor = Theme.current.background
+        moviesCollectionView.backgroundColor = Theme.current.background
+        moviesCollectionView.reloadData()
     }
     
     func loadMovies() {

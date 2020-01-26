@@ -15,7 +15,8 @@ class MoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     
     func setupCell(movie: MoviesFill?) {
-        self.backgroundColor = .customDarkBlue
+        self.backgroundColor = Theme.current.cellBackground
+        self.titleLbl.font = UIFont(name: Theme.current.font, size: 17)
         self.titleLbl.text = movie?.title
         self.image.sd_setImage(with: movie?.posterURL)
         
