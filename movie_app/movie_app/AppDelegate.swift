@@ -12,12 +12,15 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        UITabBar.appearance().barTintColor = .customLigthYellow
-        UITabBar.appearance().tintColor = .black
-        UINavigationBar.appearance().barTintColor = .customLigthYellow
+        
+        if UserDefaults.standard.object(forKey: "isLightTheme") != nil {
+            Theme.current = UserDefaults.standard.getTheme() ? LightTheme() : DarkTheme()
+        }
+        UITabBar.applyTheme()
+        UINavigationBar.applyTheme()
+        
+        
         return true
     }
 

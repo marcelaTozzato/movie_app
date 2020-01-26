@@ -86,5 +86,5 @@ extension MoviesViewController: MoviesViewModelDelegate {
     
     func failLoadMovie(error: String) {
         print(error)
-    }
+    } 
 }
