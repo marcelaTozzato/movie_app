@@ -16,6 +16,8 @@ protocol ThemeProtocol: class {
     var textColor: UIColor { get }
     var textTint: UIColor { get }
     var font: String { get }
+    var statusBar: UIBarStyle { get }
+    var statusBarStyle: UIStatusBarStyle { get }
 }
 
 class LightTheme: ThemeProtocol {
@@ -31,6 +33,10 @@ class LightTheme: ThemeProtocol {
     //TEXT:
     var textColor: UIColor = .black
     var font: String = "WillGrace"
+    
+    //STATUS BAR:
+    var statusBar: UIBarStyle = .default
+    var statusBarStyle: UIStatusBarStyle = .darkContent
 }
 
 class DarkTheme: ThemeProtocol {
@@ -40,12 +46,16 @@ class DarkTheme: ThemeProtocol {
     var movieCellBackground: UIColor = .customDarkYellow
     
     //TAB BAR AND NAVIGATION CONTROLLER
-    var barTint: UIColor = .customLigthYellow //.customDarkBlue
-    var textTint: UIColor = .black //.white
+    var barTint: UIColor = .customDarkBlue
+    var textTint: UIColor = .white
     
     //TEXT:
     var textColor: UIColor = .white
     var font: String = "WillGrace"
+    
+    //STATUS BAR:
+    var statusBar: UIBarStyle = .black
+    var statusBarStyle: UIStatusBarStyle = .lightContent
 }
 
 class Theme {

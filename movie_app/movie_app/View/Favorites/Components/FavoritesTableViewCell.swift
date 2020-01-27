@@ -25,7 +25,7 @@ class FavoritesTableViewCell: UITableViewCell {
         titleLbl.textColor = Theme.current.textColor
         yearLbl.textColor = Theme.current.textColor
         overviewLbl.textColor = Theme.current.textColor
-        UITableViewCell.appearance().backgroundColor = Theme.current.favoritesCellBackground
+        backgroundColor = Theme.current.favoritesCellBackground
     }
     
 }

@@ -42,8 +42,8 @@ class DetailsViewController: UIViewController {
         
         section = ["Image", "Title", "Release", "Synopsis"]
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         view.backgroundColor = Theme.current.ViewBackground
         detailTableView.backgroundColor = Theme.current.ViewBackground
         detailTableView.reloadData()

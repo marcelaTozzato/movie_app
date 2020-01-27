@@ -27,10 +27,18 @@ class SettingsViewController: UIViewController {
 
         applyTheme()
         
+        setNeedsStatusBarAppearanceUpdate()
+        
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Theme.current.statusBarStyle
     }
     
     fileprivate func applyTheme() {
         view.backgroundColor = Theme.current.ViewBackground
         themeLabel.textColor = Theme.current.textColor
+        
+        tabBarController?.applyTheme()
     }
 }

@@ -13,7 +13,7 @@ class ImageTableViewCell: UITableViewCell {
     @IBOutlet weak var movieImage: UIImageView!
     
     func setupCell(posterPath: URL?) {
-        self.movieImage.sd_setImage(with: posterPath)
-        UITableViewCell.appearance().backgroundColor = Theme.current.ViewBackground
+        movieImage.sd_setImage(with: posterPath)
+        backgroundColor = Theme.current.ViewBackground
     }
 }
