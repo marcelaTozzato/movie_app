@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol DescriptionTableViewCellDelegate: class {
+    func setFavorite(movie: MoviesFill)
+    func getSavedFavorites() -> [MoviesFill]
+}
+
 class DescriptionTableViewCell: UITableViewCell {
     
     var currentMovie: MoviesFill?
-    lazy var viewModel: FavoritesViewModel = FavoritesViewModel()
+    weak var delegate: DescriptionTableViewCellDelegate?
     
     @IBOutlet weak var movieLbl: UILabel!
     @IBOutlet weak var favoritesButton: UIButton!
@@ -24,7 +29,8 @@ class DescriptionTableViewCell: UITableViewCell {
     }
     
     func setupButton() {
-        let isFavorite: Bool = viewModel.getArrayFavoritesMovies().contains(obj: currentMovie)
+        guard let array = delegate?.getSavedFavorites() else { return }
+        let isFavorite: Bool = array.contains(obj: currentMovie)
         if isFavorite {
             self.favoritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
@@ -34,9 +40,7 @@ class DescriptionTableViewCell: UITableViewCell {
     
     @IBAction func clickedFavoritesButton(_ sender: UIButton){
         guard let currentMovie = currentMovie else {return}
-        viewModel.setArrayFavoritesMovies()
-        let currentMovieDataDict = ["currentMovie": currentMovie]
-        NotificationCenter.default.post(name: .savedFavorite, object: nil, userInfo: currentMovieDataDict)
+        delegate?.setFavorite(movie: currentMovie)
         setupButton()
     }
 }

@@ -33,6 +33,9 @@ class DetailsViewController: UIViewController {
     var currentMovie: MoviesFill?
     var section: [String] = []
     var currentSession: SectionType?
+    var descriptionCell: DescriptionTableViewCell?
+    var viewModel: DetailsViewModel?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +44,26 @@ class DetailsViewController: UIViewController {
         self.detailTableView.dataSource = self
         
         section = ["Image", "Title", "Release", "Synopsis"]
+        
+        self.viewModel = DetailsViewModel()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         view.backgroundColor = Theme.current.ViewBackground
         detailTableView.backgroundColor = Theme.current.ViewBackground
         detailTableView.reloadData()
+    }
+}
+
+extension DetailsViewController: DescriptionTableViewCellDelegate {
+    func getSavedFavorites() -> [MoviesFill] {
+        guard let savedFavorites = viewModel?.getArrayFavoritesMovies() else { return [MoviesFill]() }
+        return savedFavorites
+    }
+    
+    func setFavorite(movie: MoviesFill) {
+        self.viewModel?.setFavorite(movie: movie)
     }
 }
 
@@ -70,6 +87,7 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .title:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
+            cell.delegate = self
             cell.setupCell(description: currentMovie?.title ?? "")
             cell.currentMovie = self.currentMovie
             cell.setupButton()

@@ -12,17 +12,20 @@ class FavoritesViewController: UIViewController {
     
     @IBOutlet var favoritesTableView: UITableView!
     var savedFavorites: [MoviesFill]?
+    var favoritesViewModel: FavoritesViewModel = FavoritesViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.favoritesViewModel = FavoritesViewModel()
         
         self.favoritesTableView.delegate = self
         self.favoritesTableView.dataSource = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.savedFavorites = Utils.getFavorite(key: "usersFavorite")
+        self.savedFavorites = favoritesViewModel.getArrayFavoritesMovies()
         self.view.backgroundColor = Theme.current.ViewBackground
         self.favoritesTableView.backgroundColor = Theme.current.ViewBackground
         setNeedsStatusBarAppearanceUpdate()
