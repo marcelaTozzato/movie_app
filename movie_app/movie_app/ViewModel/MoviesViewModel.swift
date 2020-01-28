@@ -45,14 +45,8 @@ class MoviesViewModel {
     }
     
     func loadCurrentCell(index: Int) -> MoviesFill {
-        var arrayMoviesFill: [MoviesFill] = []
-        guard let moviesObject = arrayMoviesObject else {return MoviesFill(title: "", releaseYear: "", overview: "")}
-        arrayMoviesFill.append(contentsOf: moviesObject.results.map{self.fill(value: $0)})
-        return arrayMoviesFill[index]
-    }
-    
-    func fill(value: MovieObject) -> MoviesFill {
-        return Fill.transformObjectInToFill(object: value)
+        guard let arrayMoviesObject = arrayMoviesObject else { return MoviesFill(title: "", releaseYear: "", overview: "") }
+        return arrayMoviesObject.results[index].fill()
     }
     
     func numberOfItensInSection() -> Int {

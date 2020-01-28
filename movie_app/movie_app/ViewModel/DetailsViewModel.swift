@@ -12,7 +12,7 @@ class DetailsViewModel {
     
     private var favoritesServices: FavoritesService
     private var currentMovieObject: MovieObject?
-    private var arrayFavoritesMovies: [MovieObject] = Utils.getFavorite(key: "usersFavorite") ?? [MovieObject]()
+    private var arrayFavoritesMovies: [MovieObject] = UserDefaults.standard.getFavorite() ?? [MovieObject]()
     
     init (favoritesServices: FavoritesService = FavoritesService()) {
         self.favoritesServices = favoritesServices
@@ -28,7 +28,7 @@ class DetailsViewModel {
     
     func getCurrentMovie() -> MoviesFill {
         guard let detailMovie = currentMovieObject else {return MoviesFill(title: "", releaseYear: "", overview: "", posterURL: nil)}
-        return Fill.transformObjectInToFill(object: detailMovie)
+        return detailMovie.fill()
     }
     
     func checkIfMovieAlreadyExistsInArray() {
@@ -42,7 +42,7 @@ class DetailsViewModel {
     
     func setFavorite() {
         self.checkIfMovieAlreadyExistsInArray()
-        Utils.setFavorite(value: arrayFavoritesMovies, key: "usersFavorite")
+        UserDefaults.standard.setFavorite(value: self.arrayFavoritesMovies)
     }
     
     func getArrayFavoritesMovies() -> [MovieObject] {

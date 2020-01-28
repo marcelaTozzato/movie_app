@@ -47,7 +47,7 @@
 		7847B6FB23DA01DC00FFA641 /* MoviesFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7847B6FA23DA01DC00FFA641 /* MoviesFill.swift */; };
 		7847B70023DA4B1500FFA641 /* MockDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7847B6FD23DA49E800FFA641 /* MockDelegate.swift */; };
 		7847B70723DB29AD00FFA641 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7847B70623DB29AD00FFA641 /* FavoritesTableViewCell.swift */; };
-		7847B70923DB308600FFA641 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7847B70823DB308600FFA641 /* Utils.swift */; };
+		7847B70923DB308600FFA641 /* UserDefaults + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7847B70823DB308600FFA641 /* UserDefaults + Extension.swift */; };
 		78626CE023DBA135009084A6 /* Array + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78626CDF23DBA135009084A6 /* Array + Extension.swift */; };
 		788DFFC723DB58C100466DED /* Notification.Name + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788DFFC623DB58C100466DED /* Notification.Name + Extension.swift */; };
 		788DFFC923DB6AF400466DED /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788DFFC823DB6AF400466DED /* FavoritesViewModel.swift */; };
@@ -55,7 +55,7 @@
 		78969DFC23DF2397005F90E7 /* UITabBarController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78969DFB23DF2397005F90E7 /* UITabBarController + Extensions.swift */; };
 		78969DFE23DF5F0D005F90E7 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78969DFD23DF5F0D005F90E7 /* DetailsViewModel.swift */; };
 		78969E0023E0731B005F90E7 /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78969DFF23E0731B005F90E7 /* FavoritesService.swift */; };
-		78969E0223E0C41B005F90E7 /* Fill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78969E0123E0C41B005F90E7 /* Fill.swift */; };
+		78969E0223E0C41B005F90E7 /* MovieObject + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78969E0123E0C41B005F90E7 /* MovieObject + Extension.swift */; };
 		D01E51EC9A1D25DD2F96FC0F /* Pods_movie_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C0EA38E56C4AF9D38745FF /* Pods_movie_app.framework */; };
 		ED512CA4BA4BA27F7B33669D /* Pods_movie_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00D41D343A016E131D54D674 /* Pods_movie_appTests.framework */; };
 /* End PBXBuildFile section */
@@ -129,7 +129,7 @@
 		7847B6FA23DA01DC00FFA641 /* MoviesFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesFill.swift; sourceTree = "<group>"; };
 		7847B6FD23DA49E800FFA641 /* MockDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDelegate.swift; sourceTree = "<group>"; };
 		7847B70623DB29AD00FFA641 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
-		7847B70823DB308600FFA641 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		7847B70823DB308600FFA641 /* UserDefaults + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extension.swift"; sourceTree = "<group>"; };
 		78626CDF23DBA135009084A6 /* Array + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Extension.swift"; sourceTree = "<group>"; };
 		788DFFC623DB58C100466DED /* Notification.Name + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name + Extension.swift"; sourceTree = "<group>"; };
 		788DFFC823DB6AF400466DED /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 		78969DFB23DF2397005F90E7 /* UITabBarController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController + Extensions.swift"; sourceTree = "<group>"; };
 		78969DFD23DF5F0D005F90E7 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		78969DFF23E0731B005F90E7 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
-		78969E0123E0C41B005F90E7 /* Fill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fill.swift; sourceTree = "<group>"; };
+		78969E0123E0C41B005F90E7 /* MovieObject + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieObject + Extension.swift"; sourceTree = "<group>"; };
 		C352CEA1ED19DAAC78E466AC /* Pods-movie_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-movie_app.release.xcconfig"; path = "Target Support Files/Pods-movie_app/Pods-movie_app.release.xcconfig"; sourceTree = "<group>"; };
 		E88DF18F8E7AC3B94A6B7656 /* Pods_movie_app_movie_appUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_movie_app_movie_appUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7B2B355D824690B38AA25EC /* Pods-movie_appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-movie_appTests.release.xcconfig"; path = "Target Support Files/Pods-movie_appTests/Pods-movie_appTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -276,9 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				7847B6F723D9E3AF00FFA641 /* NetworkingError.swift */,
-				7847B70823DB308600FFA641 /* Utils.swift */,
 				1FF8A87223DDE01C009B6CFC /* Theme.swift */,
-				78969E0123E0C41B005F90E7 /* Fill.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -359,6 +357,8 @@
 		1FF8A87423DDE5E7009B6CFC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7847B70823DB308600FFA641 /* UserDefaults + Extension.swift */,
+				78969E0123E0C41B005F90E7 /* MovieObject + Extension.swift */,
 				1F08266B23C50CE400E9FBAC /* UIColor + Extensions.swift */,
 				1F7FF5C523CCDDFE00D87240 /* UITableViewCell + Extensions.swift */,
 				1F7FF5C723CD1BC300D87240 /* UICollectionViewCell + Extension.swift */,
@@ -663,11 +663,11 @@
 				78969DFA23DF22A1005F90E7 /* UINavigationController + Extension.swift in Sources */,
 				1F08266C23C50CE400E9FBAC /* UIColor + Extensions.swift in Sources */,
 				1F1949EE23CD38C5001A9038 /* MoviesControllerMocks.swift in Sources */,
-				78969E0223E0C41B005F90E7 /* Fill.swift in Sources */,
+				78969E0223E0C41B005F90E7 /* MovieObject + Extension.swift in Sources */,
 				1F194A1623CD6876001A9038 /* MoviesViewControllerMocks.swift in Sources */,
 				7815D31323D8F17200420928 /* MoviesViewModel.swift in Sources */,
 				1F7FF5C423CCD65400D87240 /* DescriptionTableViewCell.swift in Sources */,
-				7847B70923DB308600FFA641 /* Utils.swift in Sources */,
+				7847B70923DB308600FFA641 /* UserDefaults + Extension.swift in Sources */,
 				1F7FF5BA23CC0E1100D87240 /* RequestManager.swift in Sources */,
 				1FF8A87823DDF1A7009B6CFC /* UINavigationBar + Extensions.swift in Sources */,
 				78969E0023E0731B005F90E7 /* FavoritesService.swift in Sources */,
