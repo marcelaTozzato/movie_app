@@ -13,7 +13,7 @@ import Alamofire
 typealias getMoviesObjectFromAPI<T> = (_ result: T, _ failure: NetworkingError?) -> Void
 
 protocol MoviesProtocol {
-    func loadMovies(page: Int, completion: @escaping getMoviesObjectFromAPI<MoviesObject?>)
+    func loadMovies(page: Int, completion: @escaping getMoviesObjectFromAPI<ArrayMoviesObject?>)
 }
 
 

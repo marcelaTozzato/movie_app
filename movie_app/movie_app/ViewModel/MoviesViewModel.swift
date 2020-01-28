@@ -13,14 +13,13 @@ protocol MoviesViewModelDelegate: class {
     func failLoadMovie(error: String)
 }
 
-typealias MovieDetailNavigationData = (movies: MoviesObject?, index: Int)
+typealias MovieDetailNavigationData = (movies: ArrayMoviesObject?, index: Int)
 
 class MoviesViewModel {
     
-    var moviesObject: MoviesObject?
+    var arrayMoviesObject: ArrayMoviesObject?
     var totalPages: Int = 1
     var currentPage: Int = 1
-    var detailMovie: MovieResult?
     
     weak var delegate: MoviesViewModelDelegate?
     let moviesProtocol: MoviesProtocol
@@ -31,7 +30,7 @@ class MoviesViewModel {
     }
     
     func selectedMovie(index: Int) -> MovieDetailNavigationData {
-        return (movies: self.moviesObject, index: index)
+        return (movies: self.arrayMoviesObject, index: index)
     }
     
     func loadMovies(page: Int) {
@@ -39,7 +38,7 @@ class MoviesViewModel {
             guard let response = response else {
                 self.delegate?.failLoadMovie(error: error?.localizedDescription ?? "")
                 return }
-            self.moviesObject = response
+            self.arrayMoviesObject = response
             self.setTotalMoviePages(movie: response)
             self.delegate?.sucessLoadMovie()
         }
@@ -47,12 +46,12 @@ class MoviesViewModel {
     
     func loadCurrentCell(index: Int) -> MoviesFill {
         var arrayMoviesFill: [MoviesFill] = []
-        guard let moviesObject = moviesObject else {return MoviesFill(title: "", releaseYear: "", overview: "")}
+        guard let moviesObject = arrayMoviesObject else {return MoviesFill(title: "", releaseYear: "", overview: "")}
         arrayMoviesFill.append(contentsOf: moviesObject.results.map{self.fill(value: $0)})
         return arrayMoviesFill[index]
     }
     
-    func fill(value: MovieResult) -> MoviesFill {
+    func fill(value: MovieObject) -> MoviesFill {
         
         let title = value.title
         let overview = value.overview
@@ -70,10 +69,10 @@ class MoviesViewModel {
     }
     
     func numberOfItensInSection() -> Int {
-        return self.moviesObject?.results.count ?? 0
+        return self.arrayMoviesObject?.results.count ?? 0
     }
     
-    func setTotalMoviePages(movie: MoviesObject) {
+    func setTotalMoviePages(movie: ArrayMoviesObject) {
         self.totalPages = movie.totalPages
     }
     

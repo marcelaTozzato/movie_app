@@ -10,15 +10,15 @@ import Foundation
 
 class DetailsViewModel {
     
-    private var detailMovie: MovieResult?
+    private var currentMovieObject: MovieObject?
     private var arrayFavoritesMovies: [MoviesFill] = Utils.getFavorite(key: "usersFavorite") ?? [MoviesFill]()
     
     func prepareForNavigation(navigationData: MovieDetailNavigationData){
-        self.detailMovie = navigationData.movies?.results[navigationData.index]
+        self.currentMovieObject = navigationData.movies?.results[navigationData.index]
     }
     
     func getCurrentMovie() -> MoviesFill {
-        guard let detailMovie = detailMovie else {return MoviesFill(title: "", releaseYear: "", overview: "", posterURL: nil)}
+        guard let detailMovie = currentMovieObject else {return MoviesFill(title: "", releaseYear: "", overview: "", posterURL: nil)}
         let title = detailMovie.title
         let releaseYear = String(detailMovie.releaseDate).components(separatedBy: "-")[0]
         let overview = detailMovie.overview

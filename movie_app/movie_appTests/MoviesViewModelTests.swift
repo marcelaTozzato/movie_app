@@ -15,7 +15,7 @@ class MoviesViewModelTests: XCTestCase {
     var provider: MoviesService = MoviesService()
     var expect: XCTestExpectation?
     var runTests = {
-        (movies: MoviesObject) -> () in
+        (movies: ArrayMoviesObject) -> () in
     }
     
     override func setUp() {
@@ -45,7 +45,7 @@ class MoviesViewModelTests: XCTestCase {
         })
         
         runTests = {
-            (movies: MoviesObject) -> () in
+            (movies: ArrayMoviesObject) -> () in
             XCTAssertEqual(movies.results.count, 3, "Validação do mock: o resultado está diferente de 3")
         }
         waitForExpectations(timeout: 5.0)
