@@ -52,21 +52,9 @@ class MoviesViewModel {
     }
     
     func fill(value: MovieObject) -> MoviesFill {
-        
-        let title = value.title
-        let overview = value.overview
-        let releaseYear = String(value.releaseDate).components(separatedBy: "-")[0]
-        let posterURL = self.getURLForImage(posterPath: value.posterPath)
-        
-        return MoviesFill(title: title, releaseYear: releaseYear, overview: overview, posterURL: posterURL)
+        return Fill.transformObjectInToFill(object: value)
     }
     
-    func getURLForImage(posterPath: String) -> URL? {
-        let baseURL = "https://image.tmdb.org/t/p"
-        let fileSize = "w500"
-        
-        return URL(string: "\(baseURL)/\(fileSize)/\(posterPath)")
-    }
     
     func numberOfItensInSection() -> Int {
         return self.arrayMoviesObject?.results.count ?? 0

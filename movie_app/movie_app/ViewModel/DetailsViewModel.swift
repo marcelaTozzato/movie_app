@@ -10,29 +10,27 @@ import Foundation
 
 class DetailsViewModel {
     
+    private var favoritesServices: FavoritesService
     private var currentMovieObject: MovieObject?
     private var arrayFavoritesMovies: [MoviesFill] = Utils.getFavorite(key: "usersFavorite") ?? [MoviesFill]()
+    
+    init (favoritesServices: FavoritesService = FavoritesService()) {
+        self.favoritesServices = favoritesServices
+    }
     
     func prepareForNavigation(navigationData: MovieDetailNavigationData){
         self.currentMovieObject = navigationData.movies?.results[navigationData.index]
     }
     
+//    func getArrayFavoritesMovies(){
+//        self.favoritesServices.getArrayFavoritesMovies { (response) in
+//            self.arrayFavoritesMovies = response
+//        }
+//    }
+    
     func getCurrentMovie() -> MoviesFill {
         guard let detailMovie = currentMovieObject else {return MoviesFill(title: "", releaseYear: "", overview: "", posterURL: nil)}
-        let title = detailMovie.title
-        let releaseYear = String(detailMovie.releaseDate).components(separatedBy: "-")[0]
-        let overview = detailMovie.overview
-        let posterURL = self.getURLForImage(posterPath: detailMovie.posterPath)
-        
-        return MoviesFill(title: title, releaseYear: releaseYear, overview: overview, posterURL: posterURL)
-    }
-    
-    
-    func getURLForImage(posterPath: String) -> URL? {
-        let baseURL = "https://image.tmdb.org/t/p"
-        let fileSize = "w500"
-        
-        return URL(string: "\(baseURL)/\(fileSize)/\(posterPath)")
+        return Fill.transformObjectInToFill(object: detailMovie)
     }
     
     func checkIfMovieAlreadyExistsInArray(movie: MoviesFill) {
