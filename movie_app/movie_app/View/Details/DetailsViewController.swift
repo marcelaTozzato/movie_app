@@ -51,6 +51,7 @@ class DetailsViewController: UIViewController {
         view.backgroundColor = Theme.current.ViewBackground
         detailTableView.backgroundColor = Theme.current.ViewBackground
         detailTableView.reloadData()
+        self.viewModel?.fetchArrayFavoritesMovies()
     }
     
     func setCurrentMovie(movie: MoviesFill) -> MoviesFill {
@@ -90,23 +91,23 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
         switch currentSession {
         case .image:
             let cell: ImageTableViewCell = ImageTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
-            cell.setupCell(posterPath: viewModel?.getCurrentMovie().posterURL)
+            cell.setupCell(posterPath: viewModel?.populateCell().posterURL)
             return cell
         case .title:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
             cell.delegate = self
-            cell.setupCell(description: viewModel?.getCurrentMovie().title ?? "")
+            cell.setupCell(description: viewModel?.populateCell().title ?? "")
             cell.setupButton()
             return cell
         case .release:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
             cell.favoritesButton.isHidden = true
-            cell.setupCell(description: viewModel?.getCurrentMovie().releaseYear ?? "")
+            cell.setupCell(description: viewModel?.populateCell().releaseYear ?? "")
             return cell
         case .synopsis:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
             cell.favoritesButton.isHidden = true
-            cell.setupCell(description: viewModel?.getCurrentMovie().overview ?? "")
+            cell.setupCell(description: viewModel?.populateCell().overview ?? "")
             return cell
         default:
             return UITableViewCell()

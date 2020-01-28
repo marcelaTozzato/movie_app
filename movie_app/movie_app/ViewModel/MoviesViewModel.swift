@@ -17,12 +17,12 @@ typealias MovieDetailNavigationData = (movies: ArrayMoviesObject?, index: Int)
 
 class MoviesViewModel {
     
-    var arrayMoviesObject: ArrayMoviesObject?
-    var totalPages: Int = 1
-    var currentPage: Int = 1
+    private var arrayMoviesObject: ArrayMoviesObject?
+    private var totalPages: Int = 1
+    private var currentPage: Int = 1
     
     weak var delegate: MoviesViewModelDelegate?
-    let moviesProtocol: MoviesProtocol
+    private let moviesProtocol: MoviesProtocol
     
     init(delegate: MoviesViewModelDelegate?, moviesProtocol: MoviesProtocol = MoviesService()) {
         self.delegate = delegate
@@ -73,5 +73,4 @@ class MoviesViewModel {
     func getCurrentPage() -> Int {
         return self.currentPage
     }
-    
 }

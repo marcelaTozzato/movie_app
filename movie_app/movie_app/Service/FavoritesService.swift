@@ -8,9 +8,7 @@
 
 import Foundation
 
-class FavoritesService {
-    
-    typealias arrayFavoritesMovies<T> = (_ favoritesMovies: [T]) -> Void
+class FavoritesService: FavoritesProtocol {
     
     func setArrayFavoritesMovies(favoritesMovies: [MovieObject]) {
         UserDefaults.standard.setFavorite(value: favoritesMovies)

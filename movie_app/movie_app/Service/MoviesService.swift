@@ -11,7 +11,7 @@ import Alamofire
 
 class MoviesService: NSObject, MoviesProtocol {
     
-    private var sessionManager: SessionManager = RequestManager().getSessionManager(state: .live)
+    fileprivate var sessionManager: SessionManager = RequestManager().getSessionManager(state: .live)
     
     fileprivate let baseURL = "https://api.themoviedb.org"
     fileprivate let APIVersion = "3"
@@ -24,7 +24,7 @@ class MoviesService: NSObject, MoviesProtocol {
         self.sessionManager = sessionManager
     }
     
-    func getMoviesRequestURL(page: Int) -> String {
+    private func getMoviesRequestURL(page: Int) -> String {
         
         return "\(baseURL)/\(APIVersion)/\(APICategory)/\(APIResource)?api_key=\(APIKey)&language=\(APILanguage)&page=\(page)"
     }

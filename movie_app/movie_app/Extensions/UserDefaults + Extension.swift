@@ -13,7 +13,7 @@ extension UserDefaults {
     func setFavorite <T: Codable> (value: [T]?) {
         set(try? PropertyListEncoder().encode(value), forKey: "usersFavorite")
     }
-    
+
     func getFavorite <T: Codable> () -> [T]? {
         let favoriteMovieData = object(forKey: "usersFavorite") as? Data
         let favoriteMovie = try? PropertyListDecoder().decode([T].self, from: favoriteMovieData ?? Data())

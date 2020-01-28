@@ -10,25 +10,31 @@ import Foundation
 
 class DetailsViewModel {
     
-    private var favoritesServices: FavoritesService
+    private var favoritesProtocol: FavoritesProtocol
     private var currentMovieObject: MovieObject?
-    private var arrayFavoritesMovies: [MovieObject] = UserDefaults.standard.getFavorite() ?? [MovieObject]()
+    private var arrayFavoritesMovies: [MovieObject] = []
     
-    init (favoritesServices: FavoritesService = FavoritesService()) {
-        self.favoritesServices = favoritesServices
+    init (favoritesProtocol: FavoritesProtocol = FavoritesService()) {
+        self.favoritesProtocol = favoritesProtocol
+    }
+    
+    func fetchArrayFavoritesMovies() {
+        self.favoritesProtocol.getArrayFavoritesMovies { (response) in
+            self.arrayFavoritesMovies = response
+        }
     }
     
     func prepareForNavigation(navigationData: MovieDetailNavigationData){
         self.currentMovieObject = navigationData.movies?.results[navigationData.index]
     }
     
-    func isFavoriteMovie() -> Bool {
-        return arrayFavoritesMovies.contains(obj: currentMovieObject)
-    }
-    
-    func getCurrentMovie() -> MoviesFill {
+    func populateCell() -> MoviesFill {
         guard let detailMovie = currentMovieObject else {return MoviesFill(title: "", releaseYear: "", overview: "", posterURL: nil)}
         return detailMovie.fill()
+    }
+    
+    func isFavoriteMovie() -> Bool {
+        return arrayFavoritesMovies.contains(obj: currentMovieObject)
     }
     
     func checkIfMovieAlreadyExistsInArray() {
@@ -42,10 +48,6 @@ class DetailsViewModel {
     
     func setFavorite() {
         self.checkIfMovieAlreadyExistsInArray()
-        UserDefaults.standard.setFavorite(value: self.arrayFavoritesMovies)
-    }
-    
-    func getArrayFavoritesMovies() -> [MovieObject] {
-        return arrayFavoritesMovies
+        self.favoritesProtocol.setArrayFavoritesMovies(favoritesMovies: self.arrayFavoritesMovies)
     }
 }
