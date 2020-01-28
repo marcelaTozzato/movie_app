@@ -64,7 +64,8 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
         
         guard let vc: DetailsViewController = storyBoard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController else {return}
         
-        vc.currentMovie = viewModel.loadCurrentCell(index: indexPath.row)
+        let navigationData = viewModel.selectedMovie(index: indexPath.row)
+        vc.prepareForNavigation(navigationData: navigationData)
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

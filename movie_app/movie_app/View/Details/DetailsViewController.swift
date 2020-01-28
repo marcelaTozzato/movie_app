@@ -30,7 +30,6 @@ class DetailsViewController: UIViewController {
     
     @IBOutlet weak var detailTableView: UITableView!
     
-    var currentMovie: MoviesFill?
     var section: [String] = []
     var currentSession: SectionType?
     
@@ -44,8 +43,7 @@ class DetailsViewController: UIViewController {
         self.detailTableView.dataSource = self
         
         section = ["Image", "Title", "Release", "Synopsis"]
-        
-        self.viewModel = DetailsViewModel()
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +55,11 @@ class DetailsViewController: UIViewController {
     
     func setCurrentMovie(movie: MoviesFill) -> MoviesFill {
         return movie
+    }
+    
+    func prepareForNavigation(navigationData: MovieDetailNavigationData) {
+        self.viewModel = DetailsViewModel()
+        self.viewModel?.prepareForNavigation(navigationData: navigationData)
     }
 }
 
@@ -87,24 +90,24 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
         switch currentSession {
         case .image:
             let cell: ImageTableViewCell = ImageTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
-            cell.setupCell(posterPath: currentMovie?.posterURL)
+            cell.setupCell(posterPath: viewModel?.getCurrentMovie().posterURL)
             return cell
         case .title:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
             cell.delegate = self
-            cell.setupCell(description: currentMovie?.title ?? "")
-            cell.currentMovie = self.currentMovie
+            cell.setupCell(description: viewModel?.getCurrentMovie().title ?? "")
+            cell.currentMovie = self.viewModel?.getCurrentMovie()
             cell.setupButton()
             return cell
         case .release:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
             cell.favoritesButton.isHidden = true
-            cell.setupCell(description: currentMovie?.releaseYear ?? "")
+            cell.setupCell(description: viewModel?.getCurrentMovie().releaseYear ?? "")
             return cell
         case .synopsis:
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
             cell.favoritesButton.isHidden = true
-            cell.setupCell(description: currentMovie?.overview ?? "")
+            cell.setupCell(description: viewModel?.getCurrentMovie().overview ?? "")
             return cell
         default:
             return UITableViewCell()

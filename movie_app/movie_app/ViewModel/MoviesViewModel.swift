@@ -13,12 +13,14 @@ protocol MoviesViewModelDelegate: class {
     func failLoadMovie(error: String)
 }
 
+typealias MovieDetailNavigationData = (movies: MoviesObject?, index: Int)
+
 class MoviesViewModel {
     
-//    var arrayMoviesFill: [MoviesFill] = []
     var moviesObject: MoviesObject?
     var totalPages: Int = 1
     var currentPage: Int = 1
+    var detailMovie: MovieResult?
     
     weak var delegate: MoviesViewModelDelegate?
     let moviesProtocol: MoviesProtocol
@@ -26,6 +28,10 @@ class MoviesViewModel {
     init(delegate: MoviesViewModelDelegate?, moviesProtocol: MoviesProtocol = MoviesService()) {
         self.delegate = delegate
         self.moviesProtocol = moviesProtocol
+    }
+    
+    func selectedMovie(index: Int) -> MovieDetailNavigationData {
+        return (movies: self.moviesObject, index: index)
     }
     
     func loadMovies(page: Int) {
@@ -63,10 +69,6 @@ class MoviesViewModel {
         return URL(string: "\(baseURL)/\(fileSize)/\(posterPath)")
     }
     
-//    func loadCurrentCell(indexPath: Int) -> MoviesFill {
-//        return arrayMoviesFill[indexPath]
-//    }
-    
     func numberOfItensInSection() -> Int {
         return self.moviesObject?.results.count ?? 0
     }
@@ -91,5 +93,5 @@ class MoviesViewModel {
     func getCurrentPage() -> Int {
         return self.currentPage
     }
+    
 }
-
