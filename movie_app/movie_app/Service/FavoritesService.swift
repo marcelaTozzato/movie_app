@@ -12,11 +12,11 @@ class FavoritesService {
     
     typealias arrayFavoritesMovies<T> = (_ favoritesMovies: [T]) -> Void
     
-    func setArrayFavoritesMovies(favoritesMovies: [MoviesFill]) {
+    func setArrayFavoritesMovies(favoritesMovies: [MovieObject]) {
         Utils.setFavorite(value: favoritesMovies, key: "usersFavorite")
     }
     
-    func getArrayFavoritesMovies(completion: arrayFavoritesMovies<MoviesFill>) {
-        completion(Utils.getFavorite(key: "usersFavorite") ?? [MoviesFill]())
+    func getArrayFavoritesMovies(completion: arrayFavoritesMovies<MovieObject>) {
+        completion(Utils.getFavorite(key: "usersFavorite") ?? [MovieObject]())
     }
 }

@@ -9,13 +9,12 @@
 import UIKit
 
 protocol DescriptionTableViewCellDelegate: class {
-    func setFavorite(movie: MoviesFill)
-    func getSavedFavorites() -> [MoviesFill]
+    func setFavorite()
+    func isFavoriteMovie() -> Bool?
 }
 
 class DescriptionTableViewCell: UITableViewCell {
     
-    var currentMovie: MoviesFill?
     weak var delegate: DescriptionTableViewCellDelegate?
     
     @IBOutlet weak var movieLbl: UILabel!
@@ -29,8 +28,7 @@ class DescriptionTableViewCell: UITableViewCell {
     }
     
     func setupButton() {
-        guard let array = delegate?.getSavedFavorites() else { return }
-        let isFavorite: Bool = array.contains(obj: currentMovie)
+        guard let isFavorite = delegate?.isFavoriteMovie() else { return }
         if isFavorite {
             self.favoritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
@@ -39,8 +37,7 @@ class DescriptionTableViewCell: UITableViewCell {
     }
     
     @IBAction func clickedFavoritesButton(_ sender: UIButton){
-        guard let currentMovie = currentMovie else {return}
-        delegate?.setFavorite(movie: currentMovie)
+        delegate?.setFavorite()
         setupButton()
     }
 }

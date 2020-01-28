@@ -25,5 +25,4 @@ class Fill {
         
         return MoviesFill(title: title, releaseYear: releaseYear, overview: overview, posterURL: posterURL)
     }
-    
 }

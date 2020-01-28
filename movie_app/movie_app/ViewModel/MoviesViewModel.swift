@@ -55,7 +55,6 @@ class MoviesViewModel {
         return Fill.transformObjectInToFill(object: value)
     }
     
-    
     func numberOfItensInSection() -> Int {
         return self.arrayMoviesObject?.results.count ?? 0
     }

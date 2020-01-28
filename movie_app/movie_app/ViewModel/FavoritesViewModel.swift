@@ -10,14 +10,14 @@ import Foundation
 
 class FavoritesViewModel {
     
-    private var arrayFavoritesMovies: [MoviesFill] = []
+    private var arrayFavoritesMovies: [MovieObject] = []
     private let provider: FavoritesService
     
     init(provider: FavoritesService = FavoritesService()) {
         self.provider = provider
     }
     
-    func getArrayFavoritesMovies() -> [MoviesFill] {
+    func getArrayFavoritesMovies() -> [MovieObject] {
         self.provider.getArrayFavoritesMovies { (response) in
             self.arrayFavoritesMovies = response
         }

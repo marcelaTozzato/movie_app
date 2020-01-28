@@ -20,7 +20,7 @@ struct ArrayMoviesObject: Codable {
     }
 }
 
-struct MovieObject: Codable {
+struct MovieObject: Codable, Equatable {
     let popularity: Double
     let voteCount: Int
     let video: Bool

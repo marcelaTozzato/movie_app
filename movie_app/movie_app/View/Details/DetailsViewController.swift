@@ -64,14 +64,14 @@ class DetailsViewController: UIViewController {
 }
 
 extension DetailsViewController: DescriptionTableViewCellDelegate {
-    func getSavedFavorites() -> [MoviesFill] {
-        guard let savedFavorites = viewModel?.getArrayFavoritesMovies() else { return [MoviesFill]() }
-        return savedFavorites
+    func isFavoriteMovie() -> Bool? {
+        return viewModel?.isFavoriteMovie()
     }
     
-    func setFavorite(movie: MoviesFill) {
-        self.viewModel?.setFavorite(movie: movie)
+    func setFavorite() {
+        self.viewModel?.setFavorite()
     }
+
 }
 
 extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -96,7 +96,6 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: DescriptionTableViewCell = DescriptionTableViewCell.createCell(tableView: tableView, indexPath: indexPath)
             cell.delegate = self
             cell.setupCell(description: viewModel?.getCurrentMovie().title ?? "")
-            cell.currentMovie = self.viewModel?.getCurrentMovie()
             cell.setupButton()
             return cell
         case .release:

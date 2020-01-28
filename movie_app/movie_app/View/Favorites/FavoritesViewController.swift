@@ -11,13 +11,12 @@ import UIKit
 class FavoritesViewController: UIViewController {
     
     @IBOutlet var favoritesTableView: UITableView!
-    var savedFavorites: [MoviesFill]?
+    var savedFavorites: [MovieObject]?
     var favoritesViewModel: FavoritesViewModel = FavoritesViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.favoritesViewModel = FavoritesViewModel()
-        
         self.favoritesTableView.delegate = self
         self.favoritesTableView.dataSource = self
         
@@ -45,7 +44,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoritesTableViewCell", for: indexPath) as? FavoritesTableViewCell
         guard let savedFavorites = savedFavorites else {return UITableViewCell()}
-        cell?.setupCell(description: savedFavorites[indexPath.row])
+        cell?.setupCell(description: Fill.transformObjectInToFill(object: savedFavorites[indexPath.row]))
         return cell ?? UITableViewCell()
     }
 }

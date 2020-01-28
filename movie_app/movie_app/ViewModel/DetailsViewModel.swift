@@ -12,7 +12,7 @@ class DetailsViewModel {
     
     private var favoritesServices: FavoritesService
     private var currentMovieObject: MovieObject?
-    private var arrayFavoritesMovies: [MoviesFill] = Utils.getFavorite(key: "usersFavorite") ?? [MoviesFill]()
+    private var arrayFavoritesMovies: [MovieObject] = Utils.getFavorite(key: "usersFavorite") ?? [MovieObject]()
     
     init (favoritesServices: FavoritesService = FavoritesService()) {
         self.favoritesServices = favoritesServices
@@ -22,31 +22,30 @@ class DetailsViewModel {
         self.currentMovieObject = navigationData.movies?.results[navigationData.index]
     }
     
-//    func getArrayFavoritesMovies(){
-//        self.favoritesServices.getArrayFavoritesMovies { (response) in
-//            self.arrayFavoritesMovies = response
-//        }
-//    }
+    func isFavoriteMovie() -> Bool {
+        return arrayFavoritesMovies.contains(obj: currentMovieObject)
+    }
     
     func getCurrentMovie() -> MoviesFill {
         guard let detailMovie = currentMovieObject else {return MoviesFill(title: "", releaseYear: "", overview: "", posterURL: nil)}
         return Fill.transformObjectInToFill(object: detailMovie)
     }
     
-    func checkIfMovieAlreadyExistsInArray(movie: MoviesFill) {
-        if !arrayFavoritesMovies.contains(obj: movie) {
-            self.arrayFavoritesMovies.append(movie)
+    func checkIfMovieAlreadyExistsInArray() {
+        guard let currentMovieObject = currentMovieObject else {return}
+        if !arrayFavoritesMovies.contains(obj: currentMovieObject) {
+            self.arrayFavoritesMovies.append(currentMovieObject)
         } else {
-            arrayFavoritesMovies = self.arrayFavoritesMovies.filter {$0 != movie}
+            arrayFavoritesMovies = self.arrayFavoritesMovies.filter {$0 != currentMovieObject}
         }
     }
     
-    func setFavorite(movie: MoviesFill) {
-        self.checkIfMovieAlreadyExistsInArray(movie: movie)
+    func setFavorite() {
+        self.checkIfMovieAlreadyExistsInArray()
         Utils.setFavorite(value: arrayFavoritesMovies, key: "usersFavorite")
     }
     
-    func getArrayFavoritesMovies() -> [MoviesFill] {
+    func getArrayFavoritesMovies() -> [MovieObject] {
         return arrayFavoritesMovies
     }
 }
