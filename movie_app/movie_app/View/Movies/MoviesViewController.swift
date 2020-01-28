@@ -34,10 +34,8 @@ class MoviesViewController: UIViewController {
         navigationController?.navigationBar.barStyle = Theme.current.statusBar
         
         moviesCollectionView.reloadData()
-        
-    
     }
-
+    
     
     func loadMovies() {
         viewModel.loadMovies(page: viewModel.getCurrentPage())
@@ -66,7 +64,7 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
         
         guard let vc: DetailsViewController = storyBoard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController else {return}
         
-        vc.currentMovie = viewModel.arrayMoviesFill[indexPath.row]
+        vc.currentMovie = viewModel.loadCurrentCell(index: indexPath.row)
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -78,7 +76,7 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell: MoviesCollectionViewCell = MoviesCollectionViewCell.createCell(collectionView: collectionView, indexPath: indexPath)
-        cell.setupCell(movie: viewModel.loadCurrentCell(indexPath: indexPath.row))
+        cell.setupCell(movie: viewModel.loadCurrentCell(index: indexPath.row))
         return cell
     }
     

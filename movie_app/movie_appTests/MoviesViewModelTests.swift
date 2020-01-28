@@ -12,7 +12,7 @@ import XCTest
 class MoviesViewModelTests: XCTestCase {
     
     var sut: MoviesViewModel?
-    var provider: MoviesDataProvider = MoviesDataProvider()
+    var provider: MoviesService = MoviesService()
     var expect: XCTestExpectation?
     var runTests = {
         (movies: MoviesObject) -> () in

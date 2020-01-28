@@ -10,10 +10,10 @@ import Foundation
 import Alamofire
 
 
-typealias completion<T> = (_ result: T, _ failure: NetworkingError?) -> Void
+typealias getMoviesObjectFromAPI<T> = (_ result: T, _ failure: NetworkingError?) -> Void
 
 protocol MoviesProtocol {
-    func loadMovies(page: Int, completion: @escaping completion<MoviesObject?>)
+    func loadMovies(page: Int, completion: @escaping getMoviesObjectFromAPI<MoviesObject?>)
 }
 
 

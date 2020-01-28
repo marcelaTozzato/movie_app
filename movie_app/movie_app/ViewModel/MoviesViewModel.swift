@@ -15,14 +15,15 @@ protocol MoviesViewModelDelegate: class {
 
 class MoviesViewModel {
     
-    var arrayMoviesFill: [MoviesFill] = []
+//    var arrayMoviesFill: [MoviesFill] = []
+    var moviesObject: MoviesObject?
     var totalPages: Int = 1
     var currentPage: Int = 1
     
     weak var delegate: MoviesViewModelDelegate?
     let moviesProtocol: MoviesProtocol
     
-    init(delegate: MoviesViewModelDelegate?, moviesProtocol: MoviesProtocol = MoviesDataProvider()) {
+    init(delegate: MoviesViewModelDelegate?, moviesProtocol: MoviesProtocol = MoviesService()) {
         self.delegate = delegate
         self.moviesProtocol = moviesProtocol
     }
@@ -32,10 +33,17 @@ class MoviesViewModel {
             guard let response = response else {
                 self.delegate?.failLoadMovie(error: error?.localizedDescription ?? "")
                 return }
-            self.arrayMoviesFill.append(contentsOf: response.results.map{self.fill(value: $0)})
+            self.moviesObject = response
             self.setTotalMoviePages(movie: response)
             self.delegate?.sucessLoadMovie()
         }
+    }
+    
+    func loadCurrentCell(index: Int) -> MoviesFill {
+        var arrayMoviesFill: [MoviesFill] = []
+        guard let moviesObject = moviesObject else {return MoviesFill(title: "", releaseYear: "", overview: "")}
+        arrayMoviesFill.append(contentsOf: moviesObject.results.map{self.fill(value: $0)})
+        return arrayMoviesFill[index]
     }
     
     func fill(value: MovieResult) -> MoviesFill {
@@ -55,12 +63,12 @@ class MoviesViewModel {
         return URL(string: "\(baseURL)/\(fileSize)/\(posterPath)")
     }
     
-    func loadCurrentCell(indexPath: Int) -> MoviesFill {
-        return arrayMoviesFill[indexPath]
-    }
+//    func loadCurrentCell(indexPath: Int) -> MoviesFill {
+//        return arrayMoviesFill[indexPath]
+//    }
     
     func numberOfItensInSection() -> Int {
-        return self.arrayMoviesFill.count
+        return self.moviesObject?.results.count ?? 0
     }
     
     func setTotalMoviePages(movie: MoviesObject) {

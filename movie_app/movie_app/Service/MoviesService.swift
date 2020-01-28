@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class MoviesDataProvider: NSObject, MoviesProtocol {
+class MoviesService: NSObject, MoviesProtocol {
     
     private var sessionManager: SessionManager = RequestManager().getSessionManager(state: .live)
     
@@ -29,7 +29,7 @@ class MoviesDataProvider: NSObject, MoviesProtocol {
         return "\(baseURL)/\(APIVersion)/\(APICategory)/\(APIResource)?api_key=\(APIKey)&language=\(APILanguage)&page=\(page)"
     }
     
-    func loadMovies(page: Int, completion: @escaping completion<MoviesObject?>) {
+    func loadMovies(page: Int, completion: @escaping getMoviesObjectFromAPI<MoviesObject?>) {
                 if let URL: URL = URL(string: getMoviesRequestURL(page: page)) {
                     self.sessionManager.request(URL, method: .get).responseJSON { (response) in
                 if response.response?.statusCode == 200 {

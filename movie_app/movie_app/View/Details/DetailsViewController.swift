@@ -33,9 +33,9 @@ class DetailsViewController: UIViewController {
     var currentMovie: MoviesFill?
     var section: [String] = []
     var currentSession: SectionType?
+    
     var descriptionCell: DescriptionTableViewCell?
     var viewModel: DetailsViewModel?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +53,10 @@ class DetailsViewController: UIViewController {
         view.backgroundColor = Theme.current.ViewBackground
         detailTableView.backgroundColor = Theme.current.ViewBackground
         detailTableView.reloadData()
+    }
+    
+    func setCurrentMovie(movie: MoviesFill) -> MoviesFill {
+        return movie
     }
 }
 
