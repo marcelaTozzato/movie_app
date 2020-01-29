@@ -13,7 +13,7 @@ protocol MoviesViewModelDelegate: class {
     func failLoadMovie(error: String)
 }
 
-typealias MovieDetailNavigationData = (movies: ArrayMoviesObject?, index: Int)
+typealias MovieDetailNavigationData = (MovieObject?)
 
 class MoviesViewModel {
     
@@ -22,7 +22,7 @@ class MoviesViewModel {
     private var currentPage: Int = 1
     
     weak var delegate: MoviesViewModelDelegate?
-    private let moviesProtocol: MoviesProtocol
+    let moviesProtocol: MoviesProtocol
     
     init(delegate: MoviesViewModelDelegate?, moviesProtocol: MoviesProtocol = MoviesService()) {
         self.delegate = delegate
@@ -30,7 +30,7 @@ class MoviesViewModel {
     }
     
     func selectedMovie(index: Int) -> MovieDetailNavigationData {
-        return (movies: self.arrayMoviesObject, index: index)
+        return self.arrayMoviesObject?.results[index]
     }
     
     func loadMovies(page: Int) {

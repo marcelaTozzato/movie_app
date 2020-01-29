@@ -10,10 +10,9 @@ import Foundation
 import XCTest
 @testable import Movs
 
-class MockDelegate: MoviesViewModelDelegate {
+class MoviesViewModelMockDelegate: MoviesViewModelDelegate {
     
     var expect: XCTestExpectation?
-    var queue: DispatchQueue?
     
     func sucessLoadMovie() {
         expect?.fulfill()
@@ -22,5 +21,13 @@ class MockDelegate: MoviesViewModelDelegate {
     func failLoadMovie(error: String) {
         expect?.fulfill()
     }
+}
 
+class DetailsViewModelMockDelegate: DetailsViewModelDelegate {
+    
+    var expect: XCTestExpectation?
+    
+    func reloadData() {
+        expect?.fulfill()
+    }
 }

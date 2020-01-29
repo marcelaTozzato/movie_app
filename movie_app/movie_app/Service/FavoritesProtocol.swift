@@ -11,6 +11,6 @@ import Foundation
 typealias arrayFavoritesMovies<T> = (_ favoritesMovies: [T]) -> Void
 
 protocol FavoritesProtocol {
-    func getArrayFavoritesMovies(completion: arrayFavoritesMovies<MovieObject>)
+    func getArrayFavoritesMovies(completion: @escaping arrayFavoritesMovies<MovieObject>)
     func setArrayFavoritesMovies(favoritesMovies: [MovieObject])
 }

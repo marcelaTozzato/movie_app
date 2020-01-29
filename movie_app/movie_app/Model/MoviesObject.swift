@@ -48,4 +48,8 @@ struct MovieObject: Codable, Equatable {
         case overview
         case releaseDate = "release_date"
     }
+    
+    static func == (lhs: MovieObject, rhs: MovieObject) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

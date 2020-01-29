@@ -10,11 +10,12 @@ import Foundation
 
 class FavoritesService: FavoritesProtocol {
     
+    func getArrayFavoritesMovies(completion: @escaping arrayFavoritesMovies<MovieObject>) {
+        completion(UserDefaults.standard.getFavorite() ?? [MovieObject]())
+    }
+    
     func setArrayFavoritesMovies(favoritesMovies: [MovieObject]) {
         UserDefaults.standard.setFavorite(value: favoritesMovies)
     }
-    
-    func getArrayFavoritesMovies(completion: arrayFavoritesMovies<MovieObject>) {
-        completion(UserDefaults.standard.getFavorite() ?? [MovieObject]())
-    }
 }
+

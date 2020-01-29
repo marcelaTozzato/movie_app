@@ -50,7 +50,6 @@ class DetailsViewController: UIViewController {
         super.viewWillAppear(true)
         view.backgroundColor = Theme.current.ViewBackground
         detailTableView.backgroundColor = Theme.current.ViewBackground
-        detailTableView.reloadData()
         self.viewModel?.fetchArrayFavoritesMovies()
     }
     
@@ -59,8 +58,14 @@ class DetailsViewController: UIViewController {
     }
     
     func prepareForNavigation(navigationData: MovieDetailNavigationData) {
-        self.viewModel = DetailsViewModel()
+        self.viewModel = DetailsViewModel(delegate: self)
         self.viewModel?.prepareForNavigation(navigationData: navigationData)
+    }
+}
+
+extension DetailsViewController: DetailsViewModelDelegate {
+    func reloadData() {
+        self.detailTableView.reloadData()
     }
 }
 

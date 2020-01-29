@@ -8,24 +8,32 @@
 
 import Foundation
 
+protocol DetailsViewModelDelegate: class {
+    func reloadData()
+}
+
 class DetailsViewModel {
     
     private var favoritesProtocol: FavoritesProtocol
     private var currentMovieObject: MovieObject?
-    private var arrayFavoritesMovies: [MovieObject] = []
+    var arrayFavoritesMovies: [MovieObject] = []
     
-    init (favoritesProtocol: FavoritesProtocol = FavoritesService()) {
+    weak var delegate: DetailsViewModelDelegate?
+    
+    init (delegate: DetailsViewModelDelegate?, favoritesProtocol: FavoritesProtocol = FavoritesService()) {
         self.favoritesProtocol = favoritesProtocol
+        self.delegate = delegate
     }
     
     func fetchArrayFavoritesMovies() {
         self.favoritesProtocol.getArrayFavoritesMovies { (response) in
             self.arrayFavoritesMovies = response
+            self.delegate?.reloadData()
         }
     }
     
     func prepareForNavigation(navigationData: MovieDetailNavigationData){
-        self.currentMovieObject = navigationData.movies?.results[navigationData.index]
+        self.currentMovieObject = navigationData
     }
     
     func populateCell() -> MoviesFill {
@@ -37,9 +45,9 @@ class DetailsViewModel {
         return arrayFavoritesMovies.contains(obj: currentMovieObject)
     }
     
-    func checkIfMovieAlreadyExistsInArray() {
+    private func checkIfMovieAlreadyExistsInArray() {
         guard let currentMovieObject = currentMovieObject else {return}
-        if !arrayFavoritesMovies.contains(obj: currentMovieObject) {
+        if !isFavoriteMovie() {
             self.arrayFavoritesMovies.append(currentMovieObject)
         } else {
             arrayFavoritesMovies = self.arrayFavoritesMovies.filter {$0 != currentMovieObject}

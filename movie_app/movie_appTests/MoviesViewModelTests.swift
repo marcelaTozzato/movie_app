@@ -53,13 +53,13 @@ class MoviesViewModelTests: XCTestCase {
     
     func testShouldAppendArrayMoviesFill(){
         
-        var delegate: MockDelegate?
-        delegate = MockDelegate()
+        var delegate: MoviesViewModelMockDelegate?
+        delegate = MoviesViewModelMockDelegate()
         delegate?.expect = expectation(description: "Append3Movies")
         sut?.delegate = delegate
         sut?.loadMovies(page: 1)
         waitForExpectations(timeout: 5.0)
         
-        XCTAssertEqual(self.sut?.arrayMoviesFill.count, 3)
+        XCTAssertEqual(self.sut?.numberOfItensInSection(), 3)
     }
 }

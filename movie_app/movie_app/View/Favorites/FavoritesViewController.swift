@@ -19,7 +19,6 @@ class FavoritesViewController: UIViewController {
         self.favoritesViewModel = FavoritesViewModel()
         self.favoritesTableView.delegate = self
         self.favoritesTableView.dataSource = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
