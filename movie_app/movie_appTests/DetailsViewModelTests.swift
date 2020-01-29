@@ -46,13 +46,13 @@ class DetailsViewModelTests: XCTestCase {
     func testIfAFavoriteMovieHasBeenAddedToTheArray() {
         self.getCurrentMovie(id: 530915)
         sut?.setFavorite()
-        XCTAssertEqual(sut?.arrayFavoritesMovies.count, 19, "O usuário tentou remover um filme da lista de favoritos e não conseguiu")
+        XCTAssertEqual(sut?.getArrayFavoritesMovies().count, 19, "O usuário tentou remover um filme da lista de favoritos e não conseguiu")
     }
     
     func testIfAFavoriteMovieHasNotBeenAddedToTheArray() {
         self.getCurrentMovie(id: 0)
         sut?.setFavorite()
-        XCTAssertEqual(sut?.arrayFavoritesMovies.count, 21, "O usuário tentou adicionar um filme à lista de favoritos e não conseguiu")
+        XCTAssertEqual(sut?.getArrayFavoritesMovies().count, 21, "O usuário tentou adicionar um filme à lista de favoritos e não conseguiu")
     }
 
 }

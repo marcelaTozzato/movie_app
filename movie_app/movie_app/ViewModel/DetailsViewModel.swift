@@ -16,7 +16,7 @@ class DetailsViewModel {
     
     private var favoritesProtocol: FavoritesProtocol
     private var currentMovieObject: MovieObject?
-    var arrayFavoritesMovies: [MovieObject] = []
+    private var arrayFavoritesMovies: [MovieObject] = []
     
     weak var delegate: DetailsViewModelDelegate?
     
@@ -57,5 +57,10 @@ class DetailsViewModel {
     func setFavorite() {
         self.checkIfMovieAlreadyExistsInArray()
         self.favoritesProtocol.setArrayFavoritesMovies(favoritesMovies: self.arrayFavoritesMovies)
+    }
+    
+    //USADA APENAS PARA TESTE:
+    func getArrayFavoritesMovies() -> [MovieObject]{
+        return self.arrayFavoritesMovies
     }
 }

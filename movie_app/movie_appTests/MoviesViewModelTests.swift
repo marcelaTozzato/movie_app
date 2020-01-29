@@ -22,7 +22,7 @@ class MoviesViewModelTests: XCTestCase {
         super.setUp()
         sut = MoviesViewModel(delegate: nil, moviesProtocol: provider)
         
-        let requestManager = RequestManager(mockingProtocol: MoviesControllerMockingForSuccess3Movies.self)
+        let requestManager = RequestManager(mockingProtocol: MockMoviesService.self)
         
         provider.setSessionManager(sessionManager: requestManager.getSessionManager(state: .mock))
     }
@@ -33,7 +33,7 @@ class MoviesViewModelTests: XCTestCase {
     
     func testShouldGetMoviesWhenAllIsWorking() {
         
-        expect = expectation(description: "GetSucess3Movies")
+        expect = expectation(description: "GetSucess20Movies")
         
         sut?.moviesProtocol.loadMovies(page: 1, completion: { (response, error) in
             guard let response = response else {
@@ -46,7 +46,7 @@ class MoviesViewModelTests: XCTestCase {
         
         runTests = {
             (movies: ArrayMoviesObject) -> () in
-            XCTAssertEqual(movies.results.count, 3, "Validação do mock: o resultado está diferente de 3")
+            XCTAssertEqual(movies.results.count, 20, "Validação do mock: o resultado está diferente de 20")
         }
         waitForExpectations(timeout: 5.0)
     }
@@ -55,11 +55,11 @@ class MoviesViewModelTests: XCTestCase {
         
         var delegate: MoviesViewModelMockDelegate?
         delegate = MoviesViewModelMockDelegate()
-        delegate?.expect = expectation(description: "Append3Movies")
+        delegate?.expect = expectation(description: "Append20Movies")
         sut?.delegate = delegate
         sut?.loadMovies(page: 1)
         waitForExpectations(timeout: 5.0)
         
-        XCTAssertEqual(self.sut?.numberOfItensInSection(), 3)
+        XCTAssertEqual(self.sut?.numberOfItensInSection(), 20)
     }
 }
