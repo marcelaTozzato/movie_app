@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct ArrayMoviesObject: Codable {
+struct MovieAPIResponse: Codable {
     let page, totalResults, totalPages: Int
     let results: [MovieObject]
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case page
         case totalResults = "total_results"
         case totalPages = "total_pages"
@@ -33,7 +33,7 @@ struct MovieObject: Codable, Equatable {
     let voteAverage: Double
     let overview, releaseDate: String
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case popularity
         case voteCount = "vote_count"
         case video

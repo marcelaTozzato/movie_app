@@ -17,7 +17,7 @@ typealias MovieDetailNavigationData = (MovieObject?)
 
 class MoviesViewModel {
     
-    private var arrayMoviesObject: ArrayMoviesObject?
+    private var arrayMoviesObject: MovieAPIResponse?
     private var totalPages: Int = 1
     private var currentPage: Int = 1
     
@@ -53,7 +53,7 @@ class MoviesViewModel {
         return self.arrayMoviesObject?.results.count ?? 0
     }
     
-    func setTotalMoviePages(movie: ArrayMoviesObject) {
+    func setTotalMoviePages(movie: MovieAPIResponse) {
         self.totalPages = movie.totalPages
     }
     
