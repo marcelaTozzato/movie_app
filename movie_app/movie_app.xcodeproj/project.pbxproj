@@ -68,6 +68,8 @@
 		78ACFF0723E320A200402106 /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ACFF0623E320A200402106 /* JSONParameterEncoder.swift */; };
 		78ACFF0923E3225F00402106 /* NetworkRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ACFF0823E3225F00402106 /* NetworkRouterProtocol.swift */; };
 		78ACFF0B23E325D400402106 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ACFF0A23E325D400402106 /* Router.swift */; };
+		78ACFF0D23E35CE200402106 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ACFF0C23E35CE200402106 /* NetworkManager.swift */; };
+		78ACFF0F23E3627600402106 /* MovieEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ACFF0E23E3627600402106 /* MovieEndPoint.swift */; };
 		D01E51EC9A1D25DD2F96FC0F /* Pods_movie_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C0EA38E56C4AF9D38745FF /* Pods_movie_app.framework */; };
 		ED512CA4BA4BA27F7B33669D /* Pods_movie_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00D41D343A016E131D54D674 /* Pods_movie_appTests.framework */; };
 /* End PBXBuildFile section */
@@ -162,6 +164,8 @@
 		78ACFF0623E320A200402106 /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
 		78ACFF0823E3225F00402106 /* NetworkRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouterProtocol.swift; sourceTree = "<group>"; };
 		78ACFF0A23E325D400402106 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		78ACFF0C23E35CE200402106 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		78ACFF0E23E3627600402106 /* MovieEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndPoint.swift; sourceTree = "<group>"; };
 		C352CEA1ED19DAAC78E466AC /* Pods-movie_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-movie_app.release.xcconfig"; path = "Target Support Files/Pods-movie_app/Pods-movie_app.release.xcconfig"; sourceTree = "<group>"; };
 		E88DF18F8E7AC3B94A6B7656 /* Pods_movie_app_movie_appUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_movie_app_movie_appUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7B2B355D824690B38AA25EC /* Pods-movie_appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-movie_appTests.release.xcconfig"; path = "Target Support Files/Pods-movie_appTests/Pods-movie_appTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -490,6 +494,7 @@
 		78ACFEF623E309FF00402106 /* EndPoint */ = {
 			isa = PBXGroup;
 			children = (
+				78ACFF0E23E3627600402106 /* MovieEndPoint.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 		78ACFEF723E30A0B00402106 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				78ACFF0C23E35CE200402106 /* NetworkManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -802,11 +808,13 @@
 				1F08267023C546F800E9FBAC /* MoviesViewController.swift in Sources */,
 				1F0825F023C3CB9000E9FBAC /* SceneDelegate.swift in Sources */,
 				78ACFEFD23E3175B00402106 /* HTTPMethod.swift in Sources */,
+				78ACFF0F23E3627600402106 /* MovieEndPoint.swift in Sources */,
 				78ACFF0B23E325D400402106 /* Router.swift in Sources */,
 				78ACFF0123E3189400402106 /* HTTPHeaders.swift in Sources */,
 				1F7FF5BD23CC0E4F00D87240 /* MockingURLProtocol.swift in Sources */,
 				1FF8A87623DDEE82009B6CFC /* UITabBar + Extensions.swift in Sources */,
 				788DFFC923DB6AF400466DED /* FavoritesViewModel.swift in Sources */,
+				78ACFF0D23E35CE200402106 /* NetworkManager.swift in Sources */,
 				1FF8A86F23DDB8DC009B6CFC /* SettingsViewController.swift in Sources */,
 				1F08269323C9027500E9FBAC /* DetailsViewController.swift in Sources */,
 				78ACFF0523E31A7400402106 /* URLParameterEnconding.swift in Sources */,

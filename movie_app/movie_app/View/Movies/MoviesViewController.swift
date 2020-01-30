@@ -95,7 +95,9 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout, UICollection
 
 extension MoviesViewController: MoviesViewModelDelegate {
     func sucessLoadMovie() {
-        self.moviesCollectionView.reloadData()
+        DispatchQueue.main.async {
+            self.moviesCollectionView.reloadData()
+        }
     }
     
     func failLoadMovie(error: String) {
