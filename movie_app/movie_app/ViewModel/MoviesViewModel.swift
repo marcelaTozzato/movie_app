@@ -17,7 +17,8 @@ typealias MovieDetailNavigationData = (MovieObject?)
 
 class MoviesViewModel {
     
-    private var arrayMoviesObject: MovieAPIResponse?
+    private var movieAPIResponse: MovieAPIResponse?
+    private var arrayMoviesObject: [MovieObject] = []
     private var totalPages: Int = 1
     private var currentPage: Int = 1
     
@@ -30,7 +31,7 @@ class MoviesViewModel {
     }
     
     func selectedMovie(index: Int) -> MovieDetailNavigationData {
-        return self.arrayMoviesObject?.results[index]
+        return self.movieAPIResponse?.results[index]
     }
     
     func loadMovies(page: Int) {
@@ -38,19 +39,21 @@ class MoviesViewModel {
             guard let response = response else {
                 self.delegate?.failLoadMovie(error: error?.localizedDescription ?? "")
                 return }
-            self.arrayMoviesObject = response
+            self.movieAPIResponse = response
+            for value in response.results {
+                self.arrayMoviesObject.append(value)
+            }
             self.setTotalMoviePages(movie: response)
             self.delegate?.sucessLoadMovie()
         }
     }
     
     func loadCurrentCell(index: Int) -> MoviesFill {
-        guard let arrayMoviesObject = arrayMoviesObject else { return MoviesFill(title: "", releaseYear: "", overview: "") }
-        return arrayMoviesObject.results[index].fill()
+        return arrayMoviesObject[index].fill()
     }
     
     func numberOfItensInSection() -> Int {
-        return self.arrayMoviesObject?.results.count ?? 0
+        return self.arrayMoviesObject.count
     }
     
     func setTotalMoviePages(movie: MovieAPIResponse) {
