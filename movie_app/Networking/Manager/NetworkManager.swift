@@ -9,11 +9,19 @@
 import Foundation
 
 class MoviesService: MoviesProtocol {
-    
-    private let router = Router<MovieAPI>()
-    
+
+    var session: Session?
+    var router: NetworkRouter?
+
+    init(session: Session = .live){
+        self.session = session
+        self.router = RouterManager().changeSession(session: session)
+    }
+
     func loadMovies(page: Int, completion: @escaping getMoviesObjectFromAPI<MovieAPIResponse?>) {
-        router.request(MovieAPI(page: page)) { (data, response, error) in
+        guard let router = router else {return}
+        let endPoint: EndPointType = MovieAPI(page: page)
+        router.request(endPoint) { (data, response, error) in
             if let response = response as? HTTPURLResponse {
                 if response.statusCode == 200 {
                     do {

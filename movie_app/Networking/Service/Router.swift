@@ -15,11 +15,15 @@ import Foundation
 //Você não pode fazer downloads ou uploads em segundo plano quando o aplicativo não estiver em execução.
 //Nós basicamente criamos a request chamando o método buildRequest e passando um EndPoint. Como um erro pode ser jogado pelo encoders, fazemos o do-try-catch e passamos para frente o retorno de response, data e error
 
-class Router<EndPoint: EndPointType>: NetworkRouter {
+class Router: NetworkRouter {
     private var task: URLSessionTask?
+    private var session: URLSession
     
-    func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
-        let session = URLSession.shared
+    init(session: URLSession = URLSession.shared) {
+        self.session = session
+    }
+    
+    func request(_ route: EndPointType, completion: @escaping NetworkRouterCompletion) {
         do {
             let request = try self.buildRequest(from: route)
             task = session.dataTask(with: request, completionHandler: { (data, response, error) in
